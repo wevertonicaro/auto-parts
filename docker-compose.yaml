@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+    mysql-db:
+        image: mysql:latest
+        container_name: mysql-db
+        restart: always
+        ports:
+            - 3306:3306
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_DATABASE: 'parts_db'
+            MYSQL_ROOT_PASSWORD: 'password'
+        expose:
+            - '3306'
+        volumes:
+            - mysqldata:/data/mysql
+    app:
+        build: .
+        container_name: api-auto-parts
+        ports:
+            - 3003:3003
+        volumes:
+            - .:/usr/app
+        links:
+            - mysql-db
+        depends_on:
+            - mysql-db
+
+volumes:
+    mysqldata:
