@@ -1,6 +1,9 @@
+import { pathGroupUser } from "modules/GroupUser/swagger/GroupUser.swagger";
+import { pathUser } from "modules/User/swagger/User.swagger";
 
 const pathsRepository: Array<Object> = [
-  
+  pathUser,
+  pathGroupUser
 ]
 
 const paths = {};

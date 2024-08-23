@@ -1,3 +1,6 @@
+import { definitionsGroupUser } from "modules/GroupUser/swagger/GroupUser.swagger";
+import { definitionsUser } from "modules/User/swagger/User.swagger";
+
 const errorResponse = {
   type: 'object',
   properties: {
@@ -49,6 +52,8 @@ const unauthorizedResponse = {
 };
 
 const definitionsRepository: any[] = [
+  definitionsUser,
+  definitionsGroupUser
 ];
 
 const definitions = {
