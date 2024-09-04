@@ -46,15 +46,17 @@ export class Users1724176419779 implements MigrationInterface {
                     type: 'integer'
                 },
                 {
-                  name: 'createdAt',
-                  type: 'timestamp',
-                  default: 'now()',
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'CURRENT_TIMESTAMP',
                 },
                 {
-                  name: 'updatedAt',
-                  type: 'timestamp',
-                  onUpdate: 'now()'
-                }
+                    name: 'updated_at',
+                    type: 'timestamp',
+                    isNullable: true,  
+                    default: null, 
+                    onUpdate: 'CURRENT_TIMESTAMP'
+                },
               ],
               foreignKeys: [
                 {
@@ -62,8 +64,14 @@ export class Users1724176419779 implements MigrationInterface {
                     columnNames: ['group_user_id'],
                     referencedColumnNames: ['id'],
                     referencedTableName: 'group_users',
-                    onDelete: 'NULL',
                     onUpdate: 'CASCADE',
+                },
+              ],
+              indices: [
+                {
+                    name: 'UQ_email',
+                    columnNames: ['email'],
+                    isUnique: true,
                 },
               ],
             })

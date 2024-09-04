@@ -32,16 +32,17 @@ export class UserToken1724179742663 implements MigrationInterface {
                   type: "varchar",
                 },
                 {
-                  name: 'createdAt',
-                  type: 'timestamp',
-                  default: 'now()',
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'CURRENT_TIMESTAMP',
                 },
                 {
-                  name: 'updatedAt',
-                  type: 'timestamp',
-                  default: 'now()',
-                  onUpdate: 'now()'
-                }
+                    name: 'updated_at',
+                    type: 'timestamp',
+                    isNullable: true,  
+                    default: null, 
+                    onUpdate: 'CURRENT_TIMESTAMP'
+                },
               ],
               foreignKeys: [
                 {

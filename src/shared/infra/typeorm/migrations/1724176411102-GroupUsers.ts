@@ -19,20 +19,21 @@ export class GroupUsers1724176411102 implements MigrationInterface {
                             generationStrategy: 'increment',
                         },
                         {
-                            name: 'name',
+                            name: 'description',
                             type: 'varchar',
                         },
                         {
-                            name: 'createdAt',
+                            name: 'created_at',
                             type: 'timestamp',
-                            default: 'now()',
+                            default: 'CURRENT_TIMESTAMP',
                         },
                         {
-                            name: 'updatedAt',
+                            name: 'updated_at',
                             type: 'timestamp',
-                            default: 'null',
-                            onUpdate: 'now()'
-                        }
+                            isNullable: true,  
+                            default: null, 
+                            onUpdate: 'CURRENT_TIMESTAMP'
+                        },
                     ]
                 })
             )

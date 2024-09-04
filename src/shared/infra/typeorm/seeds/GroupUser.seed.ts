@@ -3,20 +3,11 @@ import { GroupUser } from "../entities/GroupUsers";
 
 export default async (connection: DataSource) => {
 
-  const group1 = {
-    id: 1,
-    description: 'Admin'
-  };
+  const groups = [
+    { id: 1, description: 'Admin' },
+    { id: 2, description: 'employee' },
+    { id: 3, description: 'user' },
+  ];
 
-  const group2 = {
-    id: 2,
-    description: 'employee',
-  };
-
-  const group3 = {
-    id: 3,
-    description: 'user',
-  };
-
-  await connection.getRepository(GroupUser).insert([group1, group2, group3]);
+  await connection.getRepository(GroupUser).upsert(groups, ['description']);
 };

@@ -11,8 +11,8 @@ export default async (connection: DataSource) => {
     email: 'admin@admin.com.br',
     password: password,
     active: true,
-    groupUserId: 1,
     phone: '6199999-9999',
+    groupUserId: 1
   }
 
   await connection.getRepository(User).insert(admin)

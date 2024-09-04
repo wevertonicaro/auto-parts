@@ -1,3 +1,4 @@
+import { definitionsAuth } from "modules/auth/swagger/Auth.swagger";
 import { definitionsGroupUser } from "modules/GroupUser/swagger/GroupUser.swagger";
 import { definitionsUser } from "modules/User/swagger/User.swagger";
 
@@ -53,7 +54,8 @@ const unauthorizedResponse = {
 
 const definitionsRepository: any[] = [
   definitionsUser,
-  definitionsGroupUser
+  definitionsGroupUser,
+  definitionsAuth,
 ];
 
 const definitions = {
@@ -74,3 +76,4 @@ for (let arrayObject of definitionsRepository) {
 }
 
 export { definitions };
+

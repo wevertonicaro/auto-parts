@@ -14,13 +14,11 @@ const deleteUserController = new DeleteUserController()
 
 userRouter.post('/', createUserController.handle)
 
-// Rota para buscar usuários
 userRouter.get('/', ensureAuth, findUserController.handle)
 
-// Rota para atualizar um usuário
 userRouter.put('/:id', ensureAuth, updateUserController.handle)
 
-// Rota para deletar um usuário
 userRouter.delete('/:id', ensureAuth, ensureAdmin, deleteUserController.handle)
 
 export { userRouter }
+

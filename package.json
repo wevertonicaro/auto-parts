@@ -13,7 +13,8 @@
       "entity": "sh -c 'typeorm entity:create ./src/shared/infra/typeorm/entities/$0'",
       "formatter": "npx prettier 'src/**/*.{js,ts,mjs,cjs,json}' --write",
       "check": "npx prettier . --check",
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "seed": "ts-node src/shared/infra/typeorm/seeds/index.ts"
    },
    "dependencies": {
       "@types/redis": "^4.0.11",
@@ -33,12 +34,13 @@
       "rate-limiter-flexible": "^5.0.3",
       "redis": "^4.7.0",
       "reflect-metadata": "^0.1.13",
-      "swagger-tools": "^0.10.4",
+      "swagger-tools": "^0.10.1",
       "swagger-ui-express": "^5.0.1",
       "ts-node-dev": "^2.0.0",
       "tsyringe": "^4.8.0",
       "typeorm": "0.3.20",
       "typescript": "^5.1.6",
+      "update": "^0.4.2",
       "winston": "^3.14.1",
       "yup": "^1.4.0"
    },

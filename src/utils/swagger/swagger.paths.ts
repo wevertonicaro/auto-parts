@@ -1,9 +1,11 @@
+import { pathAuth } from "modules/auth/swagger/Auth.swagger";
 import { pathGroupUser } from "modules/GroupUser/swagger/GroupUser.swagger";
 import { pathUser } from "modules/User/swagger/User.swagger";
 
 const pathsRepository: Array<Object> = [
   pathUser,
-  pathGroupUser
+  pathGroupUser,
+  pathAuth,
 ]
 
 const paths = {};
@@ -21,3 +23,4 @@ for (let tagsArrayPaths of pathsRepository) {
 }
 
 export { paths };
+

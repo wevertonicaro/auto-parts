@@ -32,13 +32,13 @@ export class User {
   @Column()
   phone: string
 
-  @Column()
+  @Column({name: "group_user_id"})
   groupUserId: number
 
-  @CreateDateColumn()
+  @CreateDateColumn({name: "created_at"})
   createdAt: Date
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({name: "updated_at"})
   updatedAt: Date
 
   @BeforeInsert()
@@ -53,6 +53,6 @@ export class User {
   }
 
   @ManyToOne(() => GroupUser, (entidade) => entidade.id)
-  @JoinColumn({ name: "groupUserId", referencedColumnName: "id" })
+  @JoinColumn({ name: "group_user_id", referencedColumnName: "id" })
   Grupo: GroupUser
 }

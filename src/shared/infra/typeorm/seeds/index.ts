@@ -3,10 +3,21 @@ import adminUser from './Admin.seed';
 import groupUser from './GroupUser.seed';
 
 async function create() {
-  const connection = await dataBaseConnection.initialize();
-  await groupUser(connection)
-  await adminUser(connection)
-  await dataBaseConnection.destroy();
-};
+  try {
+    // Inicializa a conexão com o banco de dados
+    const connection = await dataBaseConnection.initialize();
+    
+    // Executa os seeders
+    await groupUser(connection);
+    await adminUser(connection);
 
-create().then(() => console.log('Seed OK!'))
+    console.log('Seed OK!');
+  } catch (error) {
+    console.error('Error during seeding:', error);
+  } finally {
+    // Fecha a conexão com o banco de dados
+    await dataBaseConnection.destroy();
+  }
+}
+
+create();
