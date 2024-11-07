@@ -4,7 +4,7 @@ import { logger } from '../../../../utils/logger'
 import { FindUserService } from './FindUser.service'
 
 export class FindUserController {
-  async handle(request: Request, response: Response): Promise<Response> {
+  async handler(request: Request, response: Response): Promise<Response> {
     const { id, email } = request.query as { id: string, email: string }
 
     const userService = container.resolve(FindUserService)

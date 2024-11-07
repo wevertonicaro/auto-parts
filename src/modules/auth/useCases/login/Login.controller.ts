@@ -6,7 +6,6 @@ export class LoginController {
   async handler(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body    
     const loginService = container.resolve(LoginService)
-    console.log(request.body);
     
     try {
       const tokens = await loginService.execute({ email, password })

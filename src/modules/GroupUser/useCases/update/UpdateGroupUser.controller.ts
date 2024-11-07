@@ -6,7 +6,11 @@ import { UpdateGroupUserService } from "./UpdateGroupUser.service";
 
 export class UpdateGroupUserController {
   async handler(request: Request, response: Response): Promise<Response> {
-    const data: IUpdateGroupUserDto = request.query
+    const {id} = request.params
+    const data: IUpdateGroupUserDto = request.body
+
+    data.id = Number(id);
+
     try {
       const updateGroupUserService = container.resolve(UpdateGroupUserService)
 

@@ -8,7 +8,8 @@
     "airbnb-base",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,6 +22,7 @@
     "camelcase": "off",
     "no-use-before-define": "off",
     "import/no-unresolved": "error",
+    "eslint-plugin-import/order":"off",
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -51,8 +53,7 @@
       "warn",
       {
         "newlinesBetween": "always",
-        "groups": ["module", "/^@/", ["parent", "sibling", "index"]],
-        "alphabetize": { "order": "asc", "ignoreCase": true }
+        "groups": ["module", "/^@/", ["parent", "sibling", "index"]]
       }
     ],
     "import/no-extraneous-dependencies": [

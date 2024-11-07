@@ -12,13 +12,13 @@ const findUserController = new FindUserController()
 const updateUserController = new UpdateUserController()
 const deleteUserController = new DeleteUserController()
 
-userRouter.post('/', createUserController.handle)
+userRouter.post('/', (request, response) => {createUserController.handler(request, response)})
 
-userRouter.get('/', ensureAuth, findUserController.handle)
+userRouter.get('/', ensureAuth, (request, response) => {findUserController.handler(request, response)})
 
-userRouter.put('/:id', ensureAuth, updateUserController.handle)
+userRouter.put('/:id', ensureAuth, (request, response) => {updateUserController.handler(request, response)})
 
-userRouter.delete('/:id', ensureAuth, ensureAdmin, deleteUserController.handle)
+userRouter.delete('/:id', ensureAuth, ensureAdmin, (request, response) => {deleteUserController.handler(request, response)})
 
 export { userRouter }
 

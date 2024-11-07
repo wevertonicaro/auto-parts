@@ -4,7 +4,7 @@ import { logger } from '../../../../utils/logger'
 import { DeleteUserService } from './DeleteUser.service'
 
 export class DeleteUserController {
-    async handle(request: Request, response: Response): Promise<Response> {
+    async handler(request: Request, response: Response): Promise<Response> {
         const { id } = request.params
 
         const userService = container.resolve(DeleteUserService)

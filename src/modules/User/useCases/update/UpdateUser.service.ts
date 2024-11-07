@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs"
 import AppError from "http/error/AppError"
-import { ICreateUserDTO } from "modules/User/dtos/IUser.dto"
+import { IUpdateUserDTO } from "modules/User/dtos/IUser.dto"
 import { IUsersRepository } from "modules/User/repositories/IUserRepository"
 import { updateUserValidator } from "modules/User/validator/validatorUser"
 import { DayjsDateProvider } from "shared/container/providers/DateProvider/implementations/dayJsDateProvider"
@@ -15,7 +15,7 @@ export class UpdateUserService {
   ) { }
 
   async execute(
-    data: ICreateUserDTO
+    data: IUpdateUserDTO
   ): Promise<boolean> {
     await validatorObject(updateUserValidator, data)
 

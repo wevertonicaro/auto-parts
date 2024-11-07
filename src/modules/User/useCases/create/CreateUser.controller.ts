@@ -4,7 +4,7 @@ import { logger } from '../../../../utils/logger'
 import { CreateUserService } from './CreateUser.service'
 
 export class CreateUserController {
-  async handle(request: Request, response: Response): Promise<Response> {
+  async handler(request: Request, response: Response): Promise<Response> {
     const { nome, email, senha, telefone, grupoId } = request.body
     const userService = container.resolve(CreateUserService)
 

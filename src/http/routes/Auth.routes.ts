@@ -7,9 +7,9 @@ const authRouter = Router()
 const loginController = new LoginController()
 const refreshTokenController = new RefreshTokenController()
 
-authRouter.post('/', loginController.handler)
+authRouter.post('/', (request, response) => {loginController.handler(request, response)})
 
-authRouter.post('/refresh', refreshTokenController.handler)
+authRouter.post('/refresh', (request, response) => {refreshTokenController.handler(request, response)})
 
 export { authRouter };
 

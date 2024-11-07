@@ -1,16 +1,18 @@
-import cors from 'cors'
-import 'dotenv/config'
-import express, { Application, NextFunction, Request, RequestHandler, Response } from 'express'
-import 'express-async-errors'
-import morgan from 'morgan'
-import 'reflect-metadata'
-import { dataBaseConnection } from 'shared/infra/typeorm/database/dataSource'
-import swaggerTools from 'swagger-tools'
-import swaggerUiExpress, { SwaggerUiOptions } from 'swagger-ui-express'
-import { config } from '../../config/api'
-import { logger } from '../../utils/logger'
-import jsonSwagger from '../../utils/swagger/swagger'
-import AppError from '../error/AppError'
+import cors from 'cors';
+import 'dotenv/config';
+import express, { Application, NextFunction, Request, RequestHandler, Response } from 'express';
+import 'express-async-errors';
+import { router } from 'http/routes';
+import morgan from 'morgan';
+import 'reflect-metadata';
+import 'shared/container';
+import { dataBaseConnection } from 'shared/infra/typeorm/database/dataSource';
+import swaggerTools from 'swagger-tools';
+import swaggerUiExpress, { SwaggerUiOptions } from 'swagger-ui-express';
+import { config } from '../../config/api';
+import { logger } from '../../utils/logger';
+import jsonSwagger from '../../utils/swagger/swagger';
+import AppError from '../error/AppError';
 
 export class App {
     public app: Application
@@ -48,44 +50,52 @@ export class App {
     }
 
     private setupRoutes() {
-        // this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
         const swaggerDoc = jsonSwagger;
 
         const optionsSwagger: SwaggerUiOptions = {
-        explorer: false,
-        customSiteTitle: config.SERVER.DESCRIPTION,
-        swaggerOptions: {
-            docExpansion: 'none',
-            filter: true,
-            layout: 'BaseLayout',
-            operationsSorter: 'method',
-            tagsSorter: 'alpha',
-        },
+            explorer: false,
+            customSiteTitle: config.SERVER.DESCRIPTION,
+            swaggerOptions: {
+                docExpansion: 'none',
+                filter: true,
+                layout: 'BaseLayout',
+                operationsSorter: 'method',
+                tagsSorter: 'alpha',
+            },
         };
 
         swaggerTools.initializeMiddleware(swaggerDoc, (middleware: any) => {
-        this.app.use(
-            '/docs',
-            swaggerUiExpress.serve,
-            swaggerUiExpress.setup(swaggerDoc, optionsSwagger)
-        );
-        this.app.use(middleware.swaggerMetadata() as RequestHandler);
-        this.app.use(middleware.swaggerUi() as RequestHandler);
+            this.app.use(
+                '/docs',
+                swaggerUiExpress.serve,
+                swaggerUiExpress.setup(swaggerDoc, optionsSwagger)
+            );
+            this.app.use(middleware.swaggerMetadata() as RequestHandler);
+            this.app.use(middleware.swaggerUi() as RequestHandler);
         });
-        this.app.use(express.raw({type: '*/*', limit: '10mb',inflate:true}))
+        this.app.use(express.raw({ type: '*/*', limit: '10mb', inflate: true }));
+
+        this.app.use(config.SERVER.BASEPATH, router);
     }
 
     private errors() {
-        this.app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
-            logger.error(err.message)
+        this.app.use((
+            err: any, 
+            req: Request, 
+            res: Response, 
+            next: NextFunction
+        ) => {
+            logger.error(err.message);
             if (err instanceof AppError) {
-                return response.status(err.statusCode).json({ message: err.message })
+                res.status(err.statusCode).json({ message: err.message });
+            } else {
+                res.status(500).json({
+                    status: 'error',
+                    message: `Internal server error - ${err.message}`,
+                });
             }
-            return response.status(500).json({
-                status: 'error',
-                message: `Internal server error - ${err.message}`,
-            })
-        })
+            next(); 
+        });
     }
 
     private async dataBase() {

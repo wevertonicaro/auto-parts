@@ -14,7 +14,7 @@ export class GetGroupUserService {
 
     if (id) {
       groupUsers.push(await this.groupUserRepository.findById(id))
-    } else if (description) {
+    } else if (description !== 'undefined') {
       groupUsers.push(await this.groupUserRepository.findByDescription(description))
     } else {
       groupUsers = await this.groupUserRepository.find()

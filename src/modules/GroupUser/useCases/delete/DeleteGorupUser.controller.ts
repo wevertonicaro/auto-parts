@@ -5,7 +5,7 @@ import { DeleteGroupUserService } from "./DeleteGorupUser.service";
 
 export class DeleteGroupUserController {
   async handler(request: Request, response: Response): Promise<Response> {
-    const { id } = request.query
+    const { id } = request.params;
     try {
       const deleteGroupUserService = container.resolve(DeleteGroupUserService)
 
