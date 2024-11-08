@@ -1,5 +1,5 @@
 const refreshTokenLoginPath = {
-  "/login": {
+  "/refresh": {
     post: {
       tags: [
         "Autenticação"

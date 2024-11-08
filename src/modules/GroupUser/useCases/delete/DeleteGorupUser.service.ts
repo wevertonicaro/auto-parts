@@ -13,7 +13,7 @@ export class DeleteGroupUserService {
     const groupUser = await this.groupUserRepository.findById(id)
 
     if (!groupUser) {
-      throw new AppError('Organização não encontrada.', 404)
+      throw new AppError('Grupo não encontrado.', 404)
     } else {
       const deleteGroupUser = await this.groupUserRepository.delete(id)
 
