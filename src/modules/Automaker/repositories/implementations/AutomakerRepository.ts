@@ -41,7 +41,7 @@ export class AutomakerRepository implements IAutomakerRepository {
   async delete(id: number): Promise<boolean | string> {
     const deleteGroupUser = await this.repository.delete(id)
     if (deleteGroupUser.raw.affectedRows <= 0) {
-      throw new AppError('Não foi possivel deletar grupo de usuários.')
+      throw new AppError('Não foi possivel deletar a montadora.')
     }
     return true
   }

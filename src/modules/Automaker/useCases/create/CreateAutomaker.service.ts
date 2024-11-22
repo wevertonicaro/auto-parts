@@ -16,9 +16,9 @@ export class CreateAutomakerService {
   async execute(data: ICreateAutomakerDto): Promise<Automaker> {
     await validatorObject(createAutomakerValidator, data)
 
-    const groupExists = await this.automakerRepository.findByDescription(data.description)
+    const automakerExists = await this.automakerRepository.findByDescription(data.description)
 
-    if (!groupExists) throw new AppError('Montadora já existente.')
+    if (automakerExists) throw new AppError('Montadora já existente.')
 
     try {
       const createAutomaker = await this.automakerRepository.create(data)

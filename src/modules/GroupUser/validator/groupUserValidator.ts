@@ -5,6 +5,6 @@ export const createGroupUserValidator = yup.object().shape({
 })
 
 export const updateGroupUserValidator = yup.object().shape({
-  id: yup.number().required().label('Id empresa'),
+  id: yup.number().required().label('Id grupo'),
   description: yup.string().nullable().label('Descrição do grupo')
 })

@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { logger } from "../../../../utils/logger";
-import { DeleteAutomakerService } from "./DeleteAutomaker.service";
+import { DeleteCarService } from "./DeleteCar.service";
 
-export class DeleteAutomakerController {
+export class DeleteCarController {
   async handler(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     try {
-      const deleteAutomakerService = container.resolve(DeleteAutomakerService)
+      const deleteCarService = container.resolve(DeleteCarService)
 
-      const group = await deleteAutomakerService.execute(Number(id))
+      const group = await deleteCarService.execute(Number(id))
 
-      logger.info({ message: 'Montadora deletada com sucesso!' })
+      logger.info({ message: 'Veículo deletado com sucesso!' })
       return response.status(204).json(group)
     } catch (error) {
       logger.error(error.message)

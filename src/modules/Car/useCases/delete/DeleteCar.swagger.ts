@@ -1,10 +1,10 @@
-const deleteAutomakerPath = {
-  "/automakers/:id": {
+const deleteCarPath = {
+  "/cars/:id": {
     delete: {
       tags: [
-        'Montadoras'
+        'Veículos'
       ],
-      summary: "Deletar uma montadora",
+      summary: "Deletar uma veículo",
       consumes: [
         "application/json"
       ],
@@ -20,20 +20,20 @@ const deleteAutomakerPath = {
         {
           name: "id",
           in: "query",
-          description: "ID da montadora a ser deletado",
+          description: "ID do veículo a ser deletado",
           required: true,
           type: "integer"
         }
       ],
       responses: {
         204: {
-          description: "Montadora deletada com sucesso",
+          description: "Veículo deletado com sucesso",
           schema: {
-            $ref: "#/definitions/responseDeleteAutomaker"
+            $ref: "#/definitions/responseDeleteCar"
           }
         },
         400: {
-          description: "Erro ao deletar a montadora",
+          description: "Erro ao deletar o veículo",
           schema: {
             $ref: "#/definitions/errorResponse"
           }
@@ -43,9 +43,9 @@ const deleteAutomakerPath = {
   }
 };
 
-const deleteAutomakerDefinitions = [
+const deleteCarDefinitions = [
   {
-    responseDeleteAutomaker: {
+    responseDeleteCar: {
       type: "object",
       properties: {
         status: {
@@ -65,7 +65,7 @@ const deleteAutomakerDefinitions = [
 ];
 
 export {
-  deleteAutomakerDefinitions,
-  deleteAutomakerPath
+  deleteCarDefinitions,
+  deleteCarPath
 };
 

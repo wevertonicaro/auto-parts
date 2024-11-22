@@ -18,15 +18,13 @@ export class CreateGroupUserService {
 
     const groupExists = await this.groupUserRepository.findByDescription(data.description)
 
-    if (!groupExists) {
+    if (groupExists) throw new AppError('Grupo já existente.')
+    
       try {
-        const createGroup = await this.groupUserRepository.create(data)
-        return createGroup
-      } catch (error: any) {
-        return error.message
-      }
-    } else {
-      throw new AppError('Grupo já existente.')
+      const createGroup = await this.groupUserRepository.create(data)
+      return createGroup
+    } catch (error: any) {
+      return error.message
     }
   }
 }

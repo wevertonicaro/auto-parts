@@ -1,10 +1,10 @@
-const getAutomakerPath = {
-  "/automakers": {
+const getCarPath = {
+  "/cars": {
     get: {
       tags: [
-        'Montadoras'
+        'Veículos'
       ],
-      summary: "Obter informações sobre um ou mais montadoras.",
+      summary: "Obter informações sobre um ou mais veículos.",
       consumes: [
         "application/json"
       ],
@@ -20,23 +20,30 @@ const getAutomakerPath = {
         {
           name: "id",
           in: "query",
-          description: "ID da montadora a ser obtido",
+          description: "ID do veículo a ser obtido",
           required: false,
           type: "integer"
         },
         {
           name: "description",
           in: "query",
-          description: "Descrição da montadora a ser obtida",
+          description: "nome do veículo.",
           required: false,
           type: "string"
+        },
+        {
+          name: "automakerId",
+          in: "query",
+          description: "Código da montadora",
+          required: false,
+          type: "number"
         }
       ],
       responses: {
         200: {
           description: "Informações da(s) montadora(s) obtidas com sucesso",
           schema: {
-            $ref: "#/definitions/responseGetAutomaker"
+            $ref: "#/definitions/responseGetCar"
           }
         },
         400: {
@@ -50,9 +57,9 @@ const getAutomakerPath = {
   }
 };
 
-const getAutomakerDefinitions = [
+const getCarDefinitions = [
   {
-    responseGetAutomaker: {
+    responseGetCar: {
       type: "object",
       properties: {
         status: {
@@ -65,7 +72,7 @@ const getAutomakerDefinitions = [
         data: {
           type: "array",
           items: {
-            $ref: "#/definitions/responseCreateAutomaker"
+            $ref: "#/definitions/responseCreateCar"
           }
         }
       }
@@ -74,7 +81,7 @@ const getAutomakerDefinitions = [
 ];
 
 export {
-  getAutomakerDefinitions,
-  getAutomakerPath
+  getCarDefinitions,
+  getCarPath
 };
 
