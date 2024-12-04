@@ -14,10 +14,10 @@ export class UpdateAutomakerController {
     try {
       const updateAutomakerService = container.resolve(UpdateAutomakerService)
 
-      const group = await updateAutomakerService.execute(data)
+      const automaker = await updateAutomakerService.execute(data)
 
-      logger.info({ message: `Grupo atualizado com sucesso!` })
-      return response.status(200).json(group)
+      logger.info({ message: `Montadora atualizada com sucesso!` })
+      return response.status(200).json(automaker)
     } catch (error) {
       logger.error(error.message)
       return response.status(400).json({ error: error.message })

@@ -1,7 +1,8 @@
 version: '3.8'
+
 services:
     mysql-db:
-        image: mysql:latest
+        image: mysql:8.0
         container_name: mysql-db
         restart: always
         ports:
@@ -14,17 +15,28 @@ services:
             - '3306'
         volumes:
             - mysqldata:/data/mysql
+
+    redis:
+        image: redis
+        container_name: redis
+        ports:
+            - '6379:6379'
+        volumes:
+            - redisdata:/data
+
     app:
         build: .
         container_name: api-auto-parts
         ports:
-            - 3003:3003
+            - 3000:3000
         volumes:
             - .:/usr/app
-        links:
-            - mysql-db
         depends_on:
             - mysql-db
+            - redis
+        command:
+            /usr/app/wait-for-it.sh mysql-db:3306 -- /usr/app/wait-for-it.sh redis:6379 -- npm start
 
 volumes:
     mysqldata:
+    redisdata:

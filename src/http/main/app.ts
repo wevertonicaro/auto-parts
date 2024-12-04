@@ -1,18 +1,18 @@
-import cors from 'cors';
-import 'dotenv/config';
-import express, { Application, NextFunction, Request, RequestHandler, Response } from 'express';
-import 'express-async-errors';
-import { router } from 'http/routes';
-import morgan from 'morgan';
-import 'reflect-metadata';
-import 'shared/container';
-import { dataBaseConnection } from 'shared/infra/typeorm/database/dataSource';
-import swaggerTools from 'swagger-tools';
-import swaggerUiExpress, { SwaggerUiOptions } from 'swagger-ui-express';
-import { config } from '../../config/api';
-import { logger } from '../../utils/logger';
-import jsonSwagger from '../../utils/swagger/swagger';
-import AppError from '../error/AppError';
+import cors from 'cors'
+import 'dotenv/config'
+import express, { Application, NextFunction, Request, RequestHandler, Response } from 'express'
+import 'express-async-errors'
+import morgan from 'morgan'
+import 'reflect-metadata'
+import 'shared/container'
+import swaggerTools from 'swagger-tools'
+import swaggerUiExpress, { SwaggerUiOptions } from 'swagger-ui-express'
+import { config } from '../../config/api'
+import { dataBaseConnection } from '../../shared/infra/typeorm/database/dataSource'
+import { logger } from '../../utils/logger'
+import jsonSwagger from '../../utils/swagger/swagger'
+import AppError from '../error/AppError'
+import { router } from '../routes'
 
 export class App {
     public app: Application
@@ -50,7 +50,7 @@ export class App {
     }
 
     private setupRoutes() {
-        const swaggerDoc = jsonSwagger;
+        const swaggerDoc = jsonSwagger
 
         const optionsSwagger: SwaggerUiOptions = {
             explorer: false,
@@ -62,49 +62,48 @@ export class App {
                 operationsSorter: 'method',
                 tagsSorter: 'alpha',
             },
-        };
+        }
 
         swaggerTools.initializeMiddleware(swaggerDoc, (middleware: any) => {
             this.app.use(
                 '/docs',
                 swaggerUiExpress.serve,
                 swaggerUiExpress.setup(swaggerDoc, optionsSwagger)
-            );
-            this.app.use(middleware.swaggerMetadata() as RequestHandler);
-            this.app.use(middleware.swaggerUi() as RequestHandler);
-        });
-        this.app.use(express.raw({ type: '*/*', limit: '10mb', inflate: true }));
+            )
+            this.app.use(middleware.swaggerMetadata() as RequestHandler)
+            this.app.use(middleware.swaggerUi() as RequestHandler)
+        })
 
-        this.app.use(config.SERVER.BASEPATH, router);
+        // this.app.use(express.raw({ type: '*/*', limit: '10mb', inflate: true }))
+
+        this.app.use(config.SERVER.BASEPATH, router)
     }
 
     private errors() {
-        this.app.use((
-            err: any, 
-            req: Request, 
-            res: Response, 
-            next: NextFunction
-        ) => {
-            logger.error(err.message);
+        this.app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+            logger.error(err.message)
             if (err instanceof AppError) {
-                res.status(err.statusCode).json({ message: err.message });
+                res.status(err.statusCode).json({ message: err.message })
             } else {
                 res.status(500).json({
                     status: 'error',
                     message: `Internal server error - ${err.message}`,
-                });
+                })
             }
-            next(); 
-        });
+            next()
+        })
     }
 
     private async dataBase() {
-        await dataBaseConnection.initialize()
-        .then(() => console.log('Banco de dados conectado com sucesso'))
-        .catch(error => {
-            console.log(`Error:${error}`)
-            throw new AppError(`Não foi possível conectar ao banco de dados! \n ${error.message}`)
-        })
+        await dataBaseConnection
+            .initialize()
+            .then(() => console.log('Banco de dados conectado com sucesso'))
+            .catch(error => {
+                console.log(`Error:${error}`)
+                throw new AppError(
+                    `Não foi possível conectar ao banco de dados! \n ${error.message}`
+                )
+            })
     }
 
     public start() {

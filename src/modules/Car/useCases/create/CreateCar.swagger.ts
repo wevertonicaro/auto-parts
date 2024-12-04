@@ -34,7 +34,7 @@ const createCarPath = {
           }
         },
         400: {
-          description: "Erro ao criar a montadora.",
+          description: "Erro ao criar o veículo.",
           schema: {
             $ref: "#/definitions/errorResponse"
           }
@@ -56,8 +56,8 @@ const createCarDefinitions = [
         },
         automakerId: {
           type: "number",
-          desciption: "Código da montadora."
-        }
+          description: "Código da montadora.",
+        },
       }
     }
   },

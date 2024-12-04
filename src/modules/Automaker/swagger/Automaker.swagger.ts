@@ -1,6 +1,7 @@
 import { createAutomakerDefinitions, createAutomakerPath } from "../useCases/create/CreateAutomaker.swagger"
 import { deleteAutomakerDefinitions, deleteAutomakerPath } from "../useCases/delete/DeleteAutomaker.swagger"
 import { getAutomakerDefinitions, getAutomakerPath } from "../useCases/find/FindAutomaker.swagger"
+import { importAutomakerDefinitions, importAutomakerPath } from "../useCases/import/ImportAutomakerList.swagger"
 import { updateAutomakerDefinitions, updateAutomakerPath } from "../useCases/update/UpdateAutomaker.swagger"
 
 const tagsAutomaker = {
@@ -12,14 +13,16 @@ const pathAutomaker: Array<Object> = [
   createAutomakerPath,
   deleteAutomakerPath,
   getAutomakerPath,
-  updateAutomakerPath
+  updateAutomakerPath,
+  importAutomakerPath
 ]
 
 const definitionsAutomaker: Array<Object> = [
   createAutomakerDefinitions,
   deleteAutomakerDefinitions,
   getAutomakerDefinitions,
-  updateAutomakerDefinitions
+  updateAutomakerDefinitions,
+  importAutomakerDefinitions, 
 ]
 
 export {

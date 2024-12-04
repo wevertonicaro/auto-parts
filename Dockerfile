@@ -1,13 +1,25 @@
+# Use a imagem base do Node.js
 FROM node:alpine
 
-WORKDIR /usr/app
+# Instalar o Git
+RUN apk add --no-cache git
 
+# Defina o diretório de trabalho no contêiner
+WORKDIR /usr/app/src
+
+# Copie o package.json para o contêiner e instale as dependências
 COPY package.json ./
-
 RUN npm install
 
-COPY . .
+# Copie todos os arquivos do projeto para o contêiner
+COPY . ./
 
-EXPOSE 3001
+# Copie o script wait-for-it.sh e garanta que ele tenha permissões de execução
+COPY wait-for-it.sh /usr/app/wait-for-it.sh
+RUN chmod +x /usr/app/wait-for-it.sh
 
-CMD ["yarn", "start"]
+# Exponha a porta onde a aplicação irá rodar
+EXPOSE 3000
+
+# Comando para rodar a aplicação
+CMD ["npm", "start"]

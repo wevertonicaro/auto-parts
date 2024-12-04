@@ -41,13 +41,13 @@ const getCarPath = {
       ],
       responses: {
         200: {
-          description: "Informações da(s) montadora(s) obtidas com sucesso",
+          description: "Informações do(s) veículo(s) obtidas com sucesso",
           schema: {
             $ref: "#/definitions/responseGetCar"
           }
         },
         400: {
-          description: "Erro ao obter informações da(s) montadora(s)",
+          description: "Erro ao obter informações do(s) veículo(s)",
           schema: {
             $ref: "#/definitions/errorResponse"
           }

@@ -1,15 +1,17 @@
-import { Router } from "express";
-import { authRouter } from "./Auth.routes";
-import { groupUserRouter } from "./GroupUser.routes";
-import { userRouter } from "./User.routes";
+import { Router } from 'express'
+import { authRouter } from './Auth.routes'
+import { automakerRouter } from './AutoMaker'
+import { groupUserRouter } from './GroupUser.routes'
+import { userRouter } from './User.routes'
 
 const router = Router()
 
-router.use('/users', userRouter)
+router.use('/auth', authRouter)
 
-router.use('/login', authRouter)
+router.use('/users', userRouter)
 
 router.use('/group-users', groupUserRouter)
 
-export { router };
+router.use('/automakers', automakerRouter)
 
+export { router }

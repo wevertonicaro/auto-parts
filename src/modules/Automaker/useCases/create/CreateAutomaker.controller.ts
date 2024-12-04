@@ -12,7 +12,7 @@ export class CreateAutomakerController {
 
       const automaker = await createAutomakerService.execute(data)
 
-      logger.info({ message: 'Grupo criado com sucesso!' })
+      logger.info({ message: 'Monatdora criada com sucesso!' })
       return response.status(201).json(automaker)
     } catch (error) {
       logger.error(error.message)
