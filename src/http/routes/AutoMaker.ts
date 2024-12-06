@@ -11,7 +11,7 @@ import { ImportAutomakerListController } from './../../modules/Automaker/useCase
 
 const automakerRouter = Router()
 
-const createAutomarkerController = new CreateAutomakerController()
+const createAutomakerController = new CreateAutomakerController()
 
 const getAutomakerController = new GetAutomakerController()
 
@@ -30,7 +30,7 @@ automakerRouter.get('/', (request, response) => {
 automakerRouter.use(ensureAdmin)
 
 automakerRouter.post('/', (request, response) => {
-    createAutomarkerController.handler(request, response)
+    createAutomakerController.handler(request, response)
 })
 
 automakerRouter.put('/:id', (request, response) => {

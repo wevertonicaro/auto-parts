@@ -11,7 +11,7 @@ export const readCsv = async <T = Record<string, string>>(
     filePath: string,
     options: CsvReaderOptions = {}
 ): Promise<T[]> => {
-    const { delimiter = ',', headers = true } = options
+    const { delimiter = ',', headers = ['descricao', 'marca'] } = options
 
     if (!fs.existsSync(filePath)) {
         throw new AppError('Arquivo CSV não encontrado', 404)

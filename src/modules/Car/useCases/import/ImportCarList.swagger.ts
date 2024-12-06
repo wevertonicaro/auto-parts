@@ -1,10 +1,10 @@
-const importAutomakerPath = {
-    '/automakers/import': {
+const importCarPath = {
+    '/cars/import': {
         post: {
-            tags: ['Montadoras'],
-            summary: 'Importar marcas de montadoras via arquivo CSV',
+            tags: ['Veículos'],
+            summary: 'Importar lista de carros via arquivo CSV',
             description:
-                'Endpoint para upload de um arquivo CSV contendo marcas de montadoras. Apenas registros únicos serão adicionados ao sistema.',
+                'Endpoint para upload de um arquivo CSV contendo uma lista de carros. Apenas registros únicos serão adicionados ao sistema.',
             consumes: ['multipart/form-data'],
             produces: ['application/json'],
             security: [
@@ -17,7 +17,7 @@ const importAutomakerPath = {
                     name: 'file',
                     in: 'formData',
                     required: true,
-                    description: 'Arquivo CSV contendo as marcas das montadoras.',
+                    description: 'Arquivo CSV contendo a lista de carros com descrição e marca.',
                     type: 'file',
                 },
             ],
@@ -25,7 +25,7 @@ const importAutomakerPath = {
                 200: {
                     description: 'Importação realizada com sucesso',
                     schema: {
-                        $ref: '#/definitions/responseImportAutomaker',
+                        $ref: '#/definitions/responseImportCar',
                     },
                 },
                 400: {
@@ -39,9 +39,9 @@ const importAutomakerPath = {
     },
 }
 
-const importAutomakerDefinitions = [
+const importCarDefinitions = [
     {
-        responseImportAutomaker: {
+        responseImportCar: {
             type: 'object',
             properties: {
                 totalRecords: {
@@ -76,4 +76,4 @@ const importAutomakerDefinitions = [
     },
 ]
 
-export { importAutomakerDefinitions, importAutomakerPath }
+export { importCarDefinitions, importCarPath }

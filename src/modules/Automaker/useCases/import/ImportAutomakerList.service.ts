@@ -1,16 +1,11 @@
 import * as fs from 'fs'
+import { ImportAutomakerResult } from 'modules/Automaker/dtos/Automaker.dto'
 import { IAutomakerRepository } from 'modules/Automaker/repositories/IAutomakerRepository'
 import * as path from 'path'
 import { inject, injectable } from 'tsyringe'
 import { readCsv } from 'utils/CsvReader/CsvReader'
 import { readExcel } from 'utils/ExcelReader/ExcelReader'
 import AppError from '../../../../http/error/AppError'
-
-interface ImportResult {
-    totalRecords: number
-    importedRecords: number
-    duplicateRecords: number
-}
 
 @injectable()
 export class ImportAutomakerListService {
@@ -19,7 +14,7 @@ export class ImportAutomakerListService {
         private automakerRepository: IAutomakerRepository
     ) {}
 
-    async execute(file: Express.Multer.File): Promise<ImportResult> {
+    async execute(file: Express.Multer.File): Promise<ImportAutomakerResult> {
         const fileExtension = path.extname(file.originalname).toLowerCase()
 
         if (!['.csv', '.xlsx'].includes(fileExtension)) {
