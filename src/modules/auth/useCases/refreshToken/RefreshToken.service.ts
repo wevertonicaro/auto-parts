@@ -1,14 +1,14 @@
 import { sign, verify } from 'jsonwebtoken'
-import { IPayload, ITokenResponse } from 'modules/auth/dtos/Auth.dto'
-import { IUserTokensRepository } from 'modules/auth/repositories/IUserTokenRepository'
-import { refreshTokenAuthenticateValidation } from 'modules/auth/validator/AuthValidation'
 import moment from 'moment-timezone'
-import { IDateProvider } from 'shared/container/providers/DateProvider/IDateProvider'
-import { DayjsDateProvider } from 'shared/container/providers/DateProvider/implementations/dayJsDateProvider'
 import { inject, injectable } from 'tsyringe'
 import * as auth from '../../../../config/authToken'
 import AppError from '../../../../http/error/AppError'
+import { IDateProvider } from '../../../../shared/container/providers/DateProvider/IDateProvider'
+import { DayjsDateProvider } from '../../../../shared/container/providers/DateProvider/implementations/dayJsDateProvider'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { IPayload, ITokenResponse } from '../../dtos/Auth.dto'
+import { IUserTokensRepository } from '../../repositories/IUserTokenRepository'
+import { refreshTokenAuthenticateValidation } from '../../validator/AuthValidation'
 
 @injectable()
 export class RefreshTokenService {

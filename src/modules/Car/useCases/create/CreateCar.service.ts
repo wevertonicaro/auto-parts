@@ -1,11 +1,11 @@
-import { IAutomakerRepository } from 'modules/Automaker/repositories/IAutomakerRepository'
-import { ICreateCarDto } from 'modules/Car/dtos/Car.dto'
-import { ICarRepository } from 'modules/Car/repositories/ICarRepository'
-import { createCarValidator } from 'modules/Car/validator/carValidator'
-import { Car } from 'shared/infra/typeorm/entities/Car'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { Car } from '../../../../shared/infra/typeorm/entities/Car'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { IAutomakerRepository } from '../../../Automaker/repositories/IAutomakerRepository'
+import { ICreateCarDto } from '../../dtos/Car.dto'
+import { ICarRepository } from '../../repositories/ICarRepository'
+import { createCarValidator } from '../../validator/carValidator'
 
 @injectable()
 export class CreateCarService {

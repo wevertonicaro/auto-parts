@@ -1,11 +1,11 @@
-import { IUpdateAutomakerDto } from 'modules/Automaker/dtos/Automaker.dto'
-import { IAutomakerRepository } from 'modules/Automaker/repositories/IAutomakerRepository'
-import { updateAutomakerValidator } from 'modules/Automaker/validator/automakerValidator'
-import { DayjsDateProvider } from 'shared/container/providers/DateProvider/implementations/dayJsDateProvider'
-import { Automaker } from 'shared/infra/typeorm/entities/Automaker'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { DayjsDateProvider } from '../../../../shared/container/providers/DateProvider/implementations/dayJsDateProvider'
+import { Automaker } from '../../../../shared/infra/typeorm/entities/Automaker'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { IUpdateAutomakerDto } from '../../dtos/Automaker.dto'
+import { IAutomakerRepository } from '../../repositories/IAutomakerRepository'
+import { updateAutomakerValidator } from '../../validator/automakerValidator'
 
 @injectable()
 export class UpdateAutomakerService {

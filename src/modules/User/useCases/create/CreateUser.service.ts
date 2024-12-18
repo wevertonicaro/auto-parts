@@ -1,12 +1,12 @@
 import { hash } from 'bcryptjs'
-import { IGroupUserRepository } from 'modules/GroupUser/repositories/IGroupUserRepository'
-import { ICreateUserDTO } from 'modules/User/dtos/IUser.dto'
-import { IUsersRepository } from 'modules/User/repositories/IUserRepository'
-import { createUserValidator } from 'modules/User/validator/validatorUser'
-import { User } from 'shared/infra/typeorm/entities/Users'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { User } from '../../../../shared/infra/typeorm/entities/Users'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { IGroupUserRepository } from '../../../GroupUser/repositories/IGroupUserRepository'
+import { ICreateUserDTO } from '../../dtos/IUser.dto'
+import { IUsersRepository } from '../../repositories/IUserRepository'
+import { createUserValidator } from '../../validator/validatorUser'
 
 @injectable()
 export class CreateUserService {

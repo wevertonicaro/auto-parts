@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import rateLimiter from 'http/middlewares/rateLimiter'
-import { CreateUserController } from 'modules/User/useCases/create/CreateUser.controller'
-import { DeleteUserController } from 'modules/User/useCases/delete/DeleteUser.controller'
-import { FindUserController } from 'modules/User/useCases/find/FindUser.controller'
-import { UpdateUserController } from 'modules/User/useCases/update/UpdateUser.controller'
+import { CreateUserController } from '../../modules/User/useCases/create/CreateUser.controller'
+import { DeleteUserController } from '../../modules/User/useCases/delete/DeleteUser.controller'
+import { FindUserController } from '../../modules/User/useCases/find/FindUser.controller'
+import { UpdateUserController } from '../../modules/User/useCases/update/UpdateUser.controller'
 import { ensureAdmin } from '../middlewares/ensureAdmin'
 import { ensureAuth } from '../middlewares/ensureAuth'
+import rateLimiter from '../middlewares/rateLimiter'
 
 const userRouter = Router()
 const createUserController = new CreateUserController()

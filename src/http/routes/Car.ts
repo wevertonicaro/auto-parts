@@ -1,13 +1,13 @@
 import { Router } from 'express'
-import { ensureAdmin } from 'http/middlewares/ensureAdmin'
-import { ensureAuth } from 'http/middlewares/ensureAuth'
-import rateLimiter from 'http/middlewares/rateLimiter'
-import { CreateCarController } from 'modules/Car/useCases/create/CreateCar.controller'
-import { DeleteCarController } from 'modules/Car/useCases/delete/DeleteCar.controller'
-import { GetCarController } from 'modules/Car/useCases/find/FindCar.controller'
-import { ImportCarListController } from 'modules/Car/useCases/import/ImportCarList.controller'
-import { UpdateCarController } from 'modules/Car/useCases/update/UpdateCar.controller'
-import { upload } from 'utils/multer/Multer'
+import { CreateCarController } from '../../modules/Car/useCases/create/CreateCar.controller'
+import { DeleteCarController } from '../../modules/Car/useCases/delete/DeleteCar.controller'
+import { GetCarController } from '../../modules/Car/useCases/find/FindCar.controller'
+import { ImportCarListController } from '../../modules/Car/useCases/import/ImportCarList.controller'
+import { UpdateCarController } from '../../modules/Car/useCases/update/UpdateCar.controller'
+import { upload } from '../../utils/multer/Multer'
+import { ensureAdmin } from '../middlewares/ensureAdmin'
+import { ensureAuth } from '../middlewares/ensureAuth'
+import rateLimiter from '../middlewares/rateLimiter'
 
 const carRouter = Router()
 

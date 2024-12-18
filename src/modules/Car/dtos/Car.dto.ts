@@ -1,4 +1,4 @@
-import { Car } from 'shared/infra/typeorm/entities/Car'
+import { Car } from '../../../shared/infra/typeorm/entities/Car'
 
 export interface ICreateCarDto {
     id?: number
@@ -18,4 +18,5 @@ export interface ImportCarResult {
     totalRecords: number
     importedRecords: Car[]
     duplicateRecords: number
+    errorRecords: number
 }

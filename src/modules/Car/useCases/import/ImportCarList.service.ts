@@ -1,13 +1,13 @@
 import * as fs from 'fs'
-import { IAutomakerRepository } from 'modules/Automaker/repositories/IAutomakerRepository'
-import { ImportCarResult } from 'modules/Car/dtos/Car.dto'
-import { ICarRepository } from 'modules/Car/repositories/ICarRepository'
 import * as path from 'path'
-import { Car } from 'shared/infra/typeorm/entities/Car'
 import { inject, injectable } from 'tsyringe'
-import { readCsv } from 'utils/CsvReader/CsvReader'
-import { readExcel } from 'utils/ExcelReader/ExcelReader'
 import AppError from '../../../../http/error/AppError'
+import { Car } from '../../../../shared/infra/typeorm/entities/Car'
+import { readCsv } from '../../../../utils/CsvReader/CsvReader'
+import { readExcel } from '../../../../utils/ExcelReader/ExcelReader'
+import { IAutomakerRepository } from '../../../Automaker/repositories/IAutomakerRepository'
+import { ImportCarResult } from '../../dtos/Car.dto'
+import { ICarRepository } from '../../repositories/ICarRepository'
 
 @injectable()
 export class ImportCarListService {
@@ -50,17 +50,13 @@ export class ImportCarListService {
                     file.path
                 )
 
-                console.log('rawExcelData', rawExcelData)
-
                 carsData = rawExcelData.slice(1).map(row => ({
                     descricao: row[0]?.trim(),
                     marca: row[1]?.trim(),
                 }))
-
-                console.log('carsData', carsData)
             }
 
-            fs.unlinkSync(file.path)
+            await fs.promises.unlink(file.path)
 
             const totalRecords = carsData.length
             let importedRecords: Car[] = []
@@ -113,12 +109,13 @@ export class ImportCarListService {
                 totalRecords,
                 importedRecords,
                 duplicateRecords,
+                errorRecords,
             }
         } catch (error: any) {
             if (fs.existsSync(file.path)) {
                 fs.unlinkSync(file.path)
             }
-            throw new AppError(error.message)
+            throw new AppError(`Erro ao processar o arquivo ${file.originalname}: ${error.message}`)
         }
     }
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { IUpdateUserDTO } from 'modules/User/dtos/IUser.dto'
 import { container } from 'tsyringe'
+import { IUpdateUserDTO } from '../../dtos/IUser.dto'
 import { UpdateUserService } from './UpdateUser.service'
 
 export class UpdateUserController {

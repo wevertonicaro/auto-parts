@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import rateLimiter from 'http/middlewares/rateLimiter'
-import { CreateGroupUserController } from 'modules/GroupUser/useCases/create/CreateGroupUser.controller'
-import { DeleteGroupUserController } from 'modules/GroupUser/useCases/delete/DeleteGorupUser.controller'
-import { GetGroupUserController } from 'modules/GroupUser/useCases/find/FindGroupUser.controller'
-import { UpdateGroupUserController } from 'modules/GroupUser/useCases/update/UpdateGroupUser.controller'
+import { CreateGroupUserController } from '../../modules/GroupUser/useCases/create/CreateGroupUser.controller'
+import { DeleteGroupUserController } from '../../modules/GroupUser/useCases/delete/DeleteGroupUser.controller'
+import { GetGroupUserController } from '../../modules/GroupUser/useCases/find/FindGroupUser.controller'
+import { UpdateGroupUserController } from '../../modules/GroupUser/useCases/update/UpdateGroupUser.controller'
 import { ensureAdmin } from '../middlewares/ensureAdmin'
 import { ensureAuth } from '../middlewares/ensureAuth'
+import rateLimiter from '../middlewares/rateLimiter'
 
 const groupUserRouter = Router()
 

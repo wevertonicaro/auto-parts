@@ -1,7 +1,7 @@
-import AppError from 'http/error/AppError'
-import { IAutomakerRepository } from 'modules/Automaker/repositories/IAutomakerRepository'
-import { Automaker } from 'shared/infra/typeorm/entities/Automaker'
 import { inject, injectable } from 'tsyringe'
+import AppError from '../../../../http/error/AppError'
+import { Automaker } from '../../../../shared/infra/typeorm/entities/Automaker'
+import { IAutomakerRepository } from '../../repositories/IAutomakerRepository'
 
 @injectable()
 export class GetAutomakerService {

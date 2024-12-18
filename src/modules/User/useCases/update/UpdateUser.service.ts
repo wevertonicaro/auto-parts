@@ -1,11 +1,11 @@
 import { hash } from 'bcryptjs'
-import { IUpdateUserDTO, IUserResponseDTO } from 'modules/User/dtos/IUser.dto'
-import { IUsersRepository } from 'modules/User/repositories/IUserRepository'
-import { updateUserValidator } from 'modules/User/validator/validatorUser'
-import { DayjsDateProvider } from 'shared/container/providers/DateProvider/implementations/dayJsDateProvider'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { DayjsDateProvider } from '../../../../shared/container/providers/DateProvider/implementations/dayJsDateProvider'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { IUpdateUserDTO, IUserResponseDTO } from '../../dtos/IUser.dto'
+import { IUsersRepository } from '../../repositories/IUserRepository'
+import { updateUserValidator } from '../../validator/validatorUser'
 
 @injectable()
 export class UpdateUserService {

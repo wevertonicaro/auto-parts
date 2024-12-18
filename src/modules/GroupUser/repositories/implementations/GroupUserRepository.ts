@@ -1,7 +1,7 @@
-import { ICreateGroupUserDto } from 'modules/GroupUser/dtos/GroupUser.dto'
-import { GroupUser } from 'shared/infra/typeorm/entities/GroupUsers'
 import { Repository } from 'typeorm'
 import AppError from '../../../../http/error/AppError'
+import { GroupUser } from '../../../../shared/infra/typeorm/entities/GroupUsers'
+import { ICreateGroupUserDto } from '../../dtos/GroupUser.dto'
 import { IGroupUserRepository } from '../IGroupUserRepository'
 import { dataBaseConnection } from './../../../../shared/infra/typeorm/database/dataSource'
 

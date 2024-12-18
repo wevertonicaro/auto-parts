@@ -1,6 +1,6 @@
-import { IGroupUserRepository } from 'modules/GroupUser/repositories/IGroupUserRepository'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { IGroupUserRepository } from '../../repositories/IGroupUserRepository'
 
 @injectable()
 export class DeleteGroupUserService {

@@ -49,12 +49,44 @@ const importCarDefinitions = [
                     description: 'Número total de registros processados do arquivo.',
                 },
                 importedRecords: {
-                    type: 'integer',
-                    description: 'Número de registros que foram importados com sucesso.',
+                    type: 'array',
+                    description: 'Lista de registros importados com sucesso.',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            id: {
+                                type: 'integer',
+                                description: 'Identificador único da montadora.',
+                            },
+                            description: {
+                                type: 'string',
+                                description: 'Descrição da montadora.',
+                            },
+                            automakerId: {
+                                type: 'integer',
+                                description: 'Código referente a montadora do veículo.',
+                            },
+                            createdAt: {
+                                type: 'string',
+                                format: 'date-time',
+                                description: 'Data e hora de criação do registro.',
+                            },
+                            updatedAt: {
+                                type: 'string',
+                                format: 'date-time',
+                                description: 'Data e hora da última atualização do registro.',
+                            },
+                        },
+                    },
                 },
                 duplicateRecords: {
                     type: 'integer',
                     description: 'Número de registros que já existiam no sistema.',
+                },
+                errorRecords: {
+                    type: 'integer',
+                    description:
+                        'Número de registros que obtiveram error ao serem gravados no sistema.',
                 },
             },
         },

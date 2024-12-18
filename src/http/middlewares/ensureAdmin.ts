@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { UserRepository } from 'modules/User/repositories/implementations/UserRepository'
-import { logger } from 'utils/logger'
+import { UserRepository } from '../../modules/User/repositories/implementations/UserRepository'
+import { logger } from '../../utils/logger'
 import AppError from '../error/AppError'
 
 const ADMIN_GROUP_IDS = [1, 2]

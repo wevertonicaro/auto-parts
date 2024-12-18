@@ -1,6 +1,6 @@
-import { ICarRepository } from 'modules/Car/repositories/ICarRepository'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { ICarRepository } from '../../repositories/ICarRepository'
 
 @injectable()
 export class DeleteCarService {

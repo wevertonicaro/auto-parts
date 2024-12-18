@@ -1,7 +1,7 @@
-import { ICreateUserToken } from 'modules/auth/dtos/Auth.dto'
-import { dataBaseConnection } from 'shared/infra/typeorm/database/dataSource'
-import { UserToken } from 'shared/infra/typeorm/entities/UserToken'
 import { Repository } from 'typeorm'
+import { dataBaseConnection } from '../../../../shared/infra/typeorm/database/dataSource'
+import { UserToken } from '../../../../shared/infra/typeorm/entities/UserToken'
+import { ICreateUserToken } from '../../dtos/Auth.dto'
 import { IUserTokensRepository } from '../IUserTokenRepository'
 
 export class UserTokensRepository implements IUserTokensRepository {

@@ -1,10 +1,10 @@
-import { ICreateGroupUserDto } from 'modules/GroupUser/dtos/GroupUser.dto'
-import { IGroupUserRepository } from 'modules/GroupUser/repositories/IGroupUserRepository'
-import { createGroupUserValidator } from 'modules/GroupUser/validator/groupUserValidator'
-import { GroupUser } from 'shared/infra/typeorm/entities/GroupUsers'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { GroupUser } from '../../../../shared/infra/typeorm/entities/GroupUsers'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { ICreateGroupUserDto } from '../../dtos/GroupUser.dto'
+import { IGroupUserRepository } from '../../repositories/IGroupUserRepository'
+import { createGroupUserValidator } from '../../validator/groupUserValidator'
 
 @injectable()
 export class CreateGroupUserService {

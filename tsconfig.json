@@ -4,12 +4,20 @@
      "experimentalDecorators": true,
      "emitDecoratorMetadata": true,
      "module": "commonjs",
-     "baseUrl": "./src",
      "resolveJsonModule": true,
      "outDir": "./dist",
      "esModuleInterop": true,
      "forceConsistentCasingInFileNames": true,
      "skipLibCheck": true,
-     "sourceMap": true
-   }
+     "sourceMap": true,"moduleResolution": "node", 
+    "types": ["jest", "node"], 
+    "lib": ["es2016", "esnext.asynciterable"] 
+  },
+  "include": [
+    "src/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
  }

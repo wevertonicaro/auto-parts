@@ -1,8 +1,8 @@
-import { ICreateCarDto } from 'modules/Car/dtos/Car.dto'
-import { dataBaseConnection } from 'shared/infra/typeorm/database/dataSource'
-import { Car } from 'shared/infra/typeorm/entities/Car'
 import { Repository } from 'typeorm'
 import AppError from '../../../../http/error/AppError'
+import { dataBaseConnection } from '../../../../shared/infra/typeorm/database/dataSource'
+import { Car } from '../../../../shared/infra/typeorm/entities/Car'
+import { ICreateCarDto } from '../../dtos/Car.dto'
 import { ICarRepository } from './../ICarRepository'
 
 export class CarRepository implements ICarRepository {

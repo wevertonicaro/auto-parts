@@ -1,8 +1,8 @@
-import { ICreateAutomakerDto } from 'modules/Automaker/dtos/Automaker.dto'
-import { dataBaseConnection } from 'shared/infra/typeorm/database/dataSource'
-import { Automaker } from 'shared/infra/typeorm/entities/Automaker'
 import { Repository } from 'typeorm'
 import AppError from '../../../../http/error/AppError'
+import { dataBaseConnection } from '../../../../shared/infra/typeorm/database/dataSource'
+import { Automaker } from '../../../../shared/infra/typeorm/entities/Automaker'
+import { ICreateAutomakerDto } from '../../dtos/Automaker.dto'
 import { IAutomakerRepository } from '../IAutomakerRepository'
 
 export class AutomakerRepository implements IAutomakerRepository {

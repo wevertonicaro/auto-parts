@@ -1,3 +1,5 @@
+import { Automaker } from '../../../shared/infra/typeorm/entities/Automaker'
+
 export interface ICreateAutomakerDto {
     id?: number
     description?: string
@@ -12,6 +14,7 @@ export interface IUpdateAutomakerDto {
 
 export interface ImportAutomakerResult {
     totalRecords: number
-    importedRecords: number
+    importedRecords: Automaker[]
     duplicateRecords: number
+    errorRecords: number
 }

@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { LoginController } from 'modules/auth/useCases/login/Login.controller'
-import { RefreshTokenController } from 'modules/auth/useCases/refreshToken/RefreshToken.controller'
+import { LoginController } from '../../modules/auth/useCases/login/Login.controller'
+import { RefreshTokenController } from '../../modules/auth/useCases/refreshToken/RefreshToken.controller'
 
 const authRouter = Router()
 

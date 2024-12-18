@@ -1,11 +1,12 @@
 import * as fs from 'fs'
-import { ImportAutomakerResult } from 'modules/Automaker/dtos/Automaker.dto'
-import { IAutomakerRepository } from 'modules/Automaker/repositories/IAutomakerRepository'
 import * as path from 'path'
 import { inject, injectable } from 'tsyringe'
-import { readCsv } from 'utils/CsvReader/CsvReader'
-import { readExcel } from 'utils/ExcelReader/ExcelReader'
 import AppError from '../../../../http/error/AppError'
+import { Automaker } from '../../../../shared/infra/typeorm/entities/Automaker'
+import { readCsv } from '../../../../utils/CsvReader/CsvReader'
+import { readExcel } from '../../../../utils/ExcelReader/ExcelReader'
+import { ImportAutomakerResult } from '../../dtos/Automaker.dto'
+import { IAutomakerRepository } from '../../repositories/IAutomakerRepository'
 
 @injectable()
 export class ImportAutomakerListService {
@@ -21,32 +22,36 @@ export class ImportAutomakerListService {
             throw new AppError('O arquivo enviado deve ser no formato CSV ou XLSX.')
         }
 
-        let automakersData: { description: string }[] = []
+        let automakersData: { descricao: string }[] = []
 
         try {
             if (fileExtension === '.csv') {
                 const rawCsvData = await readCsv<{ _0: string }>(file.path, { headers: true })
                 automakersData = rawCsvData.slice(1).map(row => ({
-                    description: row._0.trim(),
+                    descricao: row._0.trim(),
                 }))
             } else if (fileExtension === '.xlsx') {
-                const rawExcelData = await readExcel<{ _0: string }>(file.path)
+                const rawExcelData = await readExcel<{ descricao: string; marca: string }>(
+                    file.path
+                )
+
                 automakersData = rawExcelData.slice(1).map(row => ({
-                    description: row._0.trim(),
+                    descricao: row[0]?.trim(),
                 }))
             }
 
-            fs.unlinkSync(file.path)
+            await fs.promises.unlink(file.path)
 
             const totalRecords = automakersData.length
-            let importedRecords = 0
+            let importedRecords: Automaker[] = []
             let duplicateRecords = 0
+            let errorRecords = 0
 
             for (const automakerData of automakersData) {
-                if (!automakerData.description) continue
+                if (!automakerData.descricao) continue
 
                 const existingAutomaker = await this.automakerRepository.findByDescription(
-                    automakerData.description
+                    automakerData.descricao
                 )
 
                 if (existingAutomaker) {
@@ -54,23 +59,29 @@ export class ImportAutomakerListService {
                     continue
                 }
 
-                await this.automakerRepository.create({
-                    description: automakerData.description,
+                const automaker = await this.automakerRepository.create({
+                    description: automakerData.descricao,
                 })
 
-                importedRecords++
+                if (automaker.id) {
+                    importedRecords.push(automaker)
+                } else {
+                    errorRecords++
+                    continue
+                }
             }
 
             return {
                 totalRecords,
                 importedRecords,
                 duplicateRecords,
+                errorRecords,
             }
         } catch (error: any) {
             if (fs.existsSync(file.path)) {
                 fs.unlinkSync(file.path)
             }
-            throw new AppError(error.message)
+            throw new AppError(`Erro ao processar o arquivo ${file.originalname}: ${error.message}`)
         }
     }
 }

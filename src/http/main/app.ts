@@ -4,10 +4,10 @@ import express, { Application, NextFunction, Request, RequestHandler, Response }
 import 'express-async-errors'
 import morgan from 'morgan'
 import 'reflect-metadata'
-import 'shared/container'
 import swaggerTools from 'swagger-tools'
 import swaggerUiExpress, { SwaggerUiOptions } from 'swagger-ui-express'
 import { config } from '../../config/api'
+import '../../shared/container'
 import { dataBaseConnection } from '../../shared/infra/typeorm/database/dataSource'
 import { logger } from '../../utils/logger'
 import jsonSwagger from '../../utils/swagger/swagger'
@@ -97,11 +97,13 @@ export class App {
     private async dataBase() {
         await dataBaseConnection
             .initialize()
-            .then(() => console.log('Banco de dados conectado com sucesso'))
-            .catch(error => {
-                console.log(`Error:${error}`)
+            .then(() => {
+                console.log('Banco de dados conectado com sucesso')
+            })
+            .catch((error: Error) => {
+                console.error('Erro ao conectar ao banco de dados:', error)
                 throw new AppError(
-                    `Não foi possível conectar ao banco de dados! \n ${error.message}`
+                    `Não foi possível conectar ao banco de dados! \nMotivo: ${error.message}`
                 )
             })
     }

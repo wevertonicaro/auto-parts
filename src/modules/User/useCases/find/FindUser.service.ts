@@ -1,7 +1,7 @@
-import { IUserResponseDTO } from "modules/User/dtos/IUser.dto"
-import { UserMap } from "modules/User/mapper/UserMap"
-import { IUsersRepository } from "modules/User/repositories/IUserRepository"
-import { inject, injectable } from "tsyringe"
+import { inject, injectable } from 'tsyringe'
+import { IUserResponseDTO } from '../../dtos/IUser.dto'
+import { UserMap } from '../../mapper/UserMap'
+import { IUsersRepository } from '../../repositories/IUserRepository'
 
 @injectable()
 export class FindUserService {
@@ -17,6 +17,7 @@ export class FindUserService {
     ): Promise<IUserResponseDTO[] | IUserResponseDTO> {
         if (id) return UserMap.toDTO(await this.userRepository.findById(Number(id)))
         if (email) return UserMap.toDTO(await this.userRepository.findByEmail(email))
+        if (name) return UserMap.toDTO(await this.userRepository.findByName(name))
         return await this.userRepository.find()
     }
 }

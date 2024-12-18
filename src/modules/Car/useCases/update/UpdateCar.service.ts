@@ -1,11 +1,11 @@
-import { IUpdateCarDto } from 'modules/Car/dtos/Car.dto'
-import { ICarRepository } from 'modules/Car/repositories/ICarRepository'
-import { updateCarValidator } from 'modules/Car/validator/carValidator'
-import { DayjsDateProvider } from 'shared/container/providers/DateProvider/implementations/dayJsDateProvider'
-import { Car } from 'shared/infra/typeorm/entities/Car'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { DayjsDateProvider } from '../../../../shared/container/providers/DateProvider/implementations/dayJsDateProvider'
+import { Car } from '../../../../shared/infra/typeorm/entities/Car'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { IUpdateCarDto } from '../../dtos/Car.dto'
+import { ICarRepository } from '../../repositories/ICarRepository'
+import { updateCarValidator } from '../../validator/carValidator'
 
 @injectable()
 export class UpdateCarService {

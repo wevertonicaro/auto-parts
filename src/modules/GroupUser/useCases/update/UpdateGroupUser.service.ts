@@ -1,11 +1,11 @@
-import { IUpdateGroupUserDto } from 'modules/GroupUser/dtos/GroupUser.dto'
-import { IGroupUserRepository } from 'modules/GroupUser/repositories/IGroupUserRepository'
-import { updateGroupUserValidator } from 'modules/GroupUser/validator/groupUserValidator'
-import { DayjsDateProvider } from 'shared/container/providers/DateProvider/implementations/dayJsDateProvider'
-import { GroupUser } from 'shared/infra/typeorm/entities/GroupUsers'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { DayjsDateProvider } from '../../../../shared/container/providers/DateProvider/implementations/dayJsDateProvider'
+import { GroupUser } from '../../../../shared/infra/typeorm/entities/GroupUsers'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { IUpdateGroupUserDto } from '../../dtos/GroupUser.dto'
+import { IGroupUserRepository } from '../../repositories/IGroupUserRepository'
+import { updateGroupUserValidator } from '../../validator/groupUserValidator'
 
 @injectable()
 export class UpdateGroupUserService {

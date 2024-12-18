@@ -1,5 +1,5 @@
 import { sign } from 'jsonwebtoken'
-import { UserMap } from 'modules/User/mapper/UserMap'
+import { UserMap } from '../modules/User/mapper/UserMap'
 
 export const secret: string = process.env.JWT_SECRET
 export const expiresToken: string = process.env.EXPIRES_TOKEN

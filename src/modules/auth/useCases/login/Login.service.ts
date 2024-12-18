@@ -1,13 +1,13 @@
 import { compare } from 'bcryptjs'
-import { IRequestLogin, IResponseLogin } from 'modules/auth/dtos/Auth.dto'
-import { IUserTokensRepository } from 'modules/auth/repositories/IUserTokenRepository'
-import { authenticateValidation } from 'modules/auth/validator/AuthValidation'
-import { UserMap } from 'modules/User/mapper/UserMap'
-import { IUsersRepository } from 'modules/User/repositories/IUserRepository'
 import { inject, injectable } from 'tsyringe'
 import * as auth from '../../../../config/authToken'
 import AppError from '../../../../http/error/AppError'
 import validatorObject from '../../../../utils/yup/location.validation'
+import { UserMap } from '../../../User/mapper/UserMap'
+import { IUsersRepository } from '../../../User/repositories/IUserRepository'
+import { IRequestLogin, IResponseLogin } from '../../dtos/Auth.dto'
+import { IUserTokensRepository } from '../../repositories/IUserTokenRepository'
+import { authenticateValidation } from '../../validator/AuthValidation'
 import { RefreshTokenService } from '../refreshToken/RefreshToken.service'
 
 @injectable()

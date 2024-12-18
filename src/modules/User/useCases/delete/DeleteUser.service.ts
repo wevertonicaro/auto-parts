@@ -1,7 +1,7 @@
-import { IUserResponseDTO } from 'modules/User/dtos/IUser.dto'
-import { IUsersRepository } from 'modules/User/repositories/IUserRepository'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
+import { IUserResponseDTO } from '../../dtos/IUser.dto'
+import { IUsersRepository } from '../../repositories/IUserRepository'
 
 @injectable()
 export class DeleteUserService {

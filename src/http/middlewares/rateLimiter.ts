@@ -1,7 +1,7 @@
-import { config } from 'config/api'
 import { NextFunction, Request, Response } from 'express'
 import { RateLimiterRedis } from 'rate-limiter-flexible'
 import * as redis from 'redis'
+import { config } from '../../config/api'
 import AppError from '../error/AppError'
 
 export const redisClient = redis.createClient({
@@ -34,8 +34,6 @@ export default async function rateLimiter(
     next: NextFunction
 ): Promise<void> {
     try {
-        console.log('Verificando limite de requisições para:', request.ip)
-
         await limiter.consume(request.ip)
         return next()
     } catch (e) {
