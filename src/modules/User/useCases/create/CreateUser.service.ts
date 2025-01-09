@@ -21,15 +21,19 @@ export class CreateUserService {
     async execute(data: ICreateUserDTO): Promise<User> {
         await validatorObject(createUserValidator, data)
 
-        const userAlreadyExists = await this.userRepository.findByEmail(data.email)
-        if (userAlreadyExists) throw new AppError('Email já cadastrado', 400)
+        const emailAlreadyExists = await this.userRepository.findByEmail(data.email)
 
-        if (data.password.length < 6)
-            throw new AppError('Senha não pode ser menor que 6 caracteres')
+        if (emailAlreadyExists) {
+            throw new AppError('Email já cadastrado')
+        }
 
         const passwordHash = await hash(data.password, 8)
 
-        data.groupUserId = (await this.groupUserRepository.findById(data.groupUserId))?.id || null
+        const groupExists = await this.groupUserRepository.findById(data.groupUserId)
+
+        if (!groupExists) {
+            throw new AppError('Grupo não encontrado.', 404)
+        }
 
         const user = await this.userRepository.create({
             name: data.name,
@@ -37,7 +41,7 @@ export class CreateUserService {
             email: data.email,
             active: true,
             phone: data.phone,
-            groupUserId: data.groupUserId,
+            groupUserId: groupExists.id,
         })
 
         if (user && user.password) {

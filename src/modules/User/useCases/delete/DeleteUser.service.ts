@@ -22,7 +22,7 @@ export class DeleteUserService {
             await this.userRepository.delete(id)
             return true
         } catch (error) {
-            return false
+            throw new AppError('Erro ao excluir o usuário.', 500)
         }
     }
 }

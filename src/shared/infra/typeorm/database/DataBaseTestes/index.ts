@@ -9,7 +9,7 @@ export const createTestDatabase = async () => {
         logging: false,
     }
 
-    const dataSource = new DataSource(options)
-    await dataSource.initialize()
-    return dataSource
+    const dataSourceTest = new DataSource(options)
+    await dataSourceTest.initialize()
+    return dataSourceTest
 }

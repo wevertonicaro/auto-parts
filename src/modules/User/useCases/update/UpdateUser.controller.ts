@@ -14,8 +14,8 @@ export class UpdateUserController {
         const userService = container.resolve(UpdateUserService)
 
         try {
-            await userService.execute(data, userLogged)
-            return response.status(200).json({ message: 'User updated successfully' })
+            const update = await userService.execute(data, userLogged)
+            return response.status(200).json({ message: 'User updated successfully', update })
         } catch (error) {
             return response.status(400).json({ error: error.message })
         }

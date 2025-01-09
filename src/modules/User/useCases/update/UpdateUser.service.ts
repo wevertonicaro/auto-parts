@@ -2,6 +2,7 @@ import { hash } from 'bcryptjs'
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
 import { DayjsDateProvider } from '../../../../shared/container/providers/DateProvider/implementations/dayJsDateProvider'
+import { User } from '../../../../shared/infra/typeorm/entities/Users'
 import validatorObject from '../../../../utils/yup/location.validation'
 import { IUpdateUserDTO, IUserResponseDTO } from '../../dtos/IUser.dto'
 import { IUsersRepository } from '../../repositories/IUserRepository'
@@ -14,7 +15,7 @@ export class UpdateUserService {
         private userRepository: IUsersRepository
     ) {}
 
-    async execute(data: IUpdateUserDTO, userLogged: IUserResponseDTO): Promise<boolean> {
+    async execute(data: IUpdateUserDTO, userLogged: IUserResponseDTO): Promise<User> {
         await validatorObject(updateUserValidator, data)
 
         if (userLogged.id !== data.id && userLogged.groupUserId !== 1) {
@@ -61,7 +62,12 @@ export class UpdateUserService {
 
         user.updatedAt = new DayjsDateProvider().dateNow()
 
-        await this.userRepository.update(user)
-        return
+        const update = await this.userRepository.update(user)
+
+        if (update && update.password) {
+            delete update.password
+        }
+
+        return update
     }
 }

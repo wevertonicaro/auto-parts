@@ -7,6 +7,6 @@ export interface IUsersRepository {
     findByEmail(email: string): Promise<User | undefined>
     findById(id: number): Promise<User | undefined>
     findByName(name: string): Promise<User | undefined>
-    update(data: IUpdateUserDTO): Promise<void>
+    update(data: IUpdateUserDTO): Promise<User | undefined>
     delete(id: number): Promise<void>
 }

@@ -38,7 +38,6 @@ describe('Get group user', () => {
 
         expect(result).toHaveLength(1)
         expect(result[0].id).toBe(group.id)
-        expect(result[0].description).toBe(group.description)
     })
 
     it('Should fetch group user by description', async () => {

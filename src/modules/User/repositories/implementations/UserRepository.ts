@@ -38,8 +38,14 @@ export class UserRepository implements IUsersRepository {
         return user
     }
 
-    async update(data: IUpdateUserDTO): Promise<void> {
-        await this.repository.update(data.id, data)
+    async update(data: IUpdateUserDTO): Promise<User | undefined> {
+        const update = await this.repository.update(data.id, data)
+
+        if (update) {
+            const id = data.id
+            return await this.repository.findOneBy({ id })
+        }
+
         return
     }
 

@@ -1,6 +1,7 @@
 # Catálogo de Peças de Veículos
 
-Este é um projeto desenvolvido em TypeScript que utiliza um banco de dados MySQL para gerenciar um
+    Este é um projeto desenvolvido em TypeScript que utiliza um banco de dados MySQL para gerenciar um
+
 catálogo de peças de veículos. O projeto foi projetado para ajudar na organização, busca e
 gerenciamento de informações sobre peças automotivas.
 
@@ -12,10 +13,14 @@ gerenciamento de informações sobre peças automotivas.
 -   **Express**: Framework web para Node.js.
 -   **TypeORM**: Ferramenta ORM para comunicação com o banco de dados.
 -   **Swagger**: Ferramenta de documentação de desenvolvimento.
+-   **Jest**: Ferramenta de testes de desenvolvimento.
+-   **Docker**: Ferramenta de containerização da aplicação.
 
 ## Pré-requisitos
 
-Certifique-se de ter o **Node.js** e o **MySQL** instalados em sua máquina antes de continuar.
+    Certifique-se de ter o **Node.js** e o **MySQL** instalados em sua máquina antes de continuar, ou,
+
+tenha o **Docker** instalado em sua máquina para que seja rodado o comando do docker compose up.
 
 ## Instalação
 
@@ -44,6 +49,6 @@ Certifique-se de ter o **Node.js** e o **MySQL** instalados em sua máquina ante
 
 ## Documentação
 
-Após inicialização do projeto, acesse através do endpoint:
+    Após inicialização do projeto, acesse a documentação através do endpoint:
 
 **/docs**
