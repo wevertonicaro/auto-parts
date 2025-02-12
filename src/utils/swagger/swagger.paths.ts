@@ -1,10 +1,18 @@
 import { pathAuth } from '../../modules/auth/swagger/Auth.swagger'
 import { pathAutomaker } from '../../modules/Automaker/swagger/Automaker.swagger'
 import { pathCar } from '../../modules/Car/swagger/Car.swagger'
+import { pathCarModel } from '../../modules/CarModels/swagger/CarModels.swagger'
 import { pathGroupUser } from '../../modules/GroupUser/swagger/GroupUser.swagger'
 import { pathUser } from '../../modules/User/swagger/User.swagger'
 
-const pathsRepository: Array<Object> = [pathUser, pathGroupUser, pathAuth, pathAutomaker, pathCar]
+const pathsRepository: Array<Object> = [
+    pathUser,
+    pathGroupUser,
+    pathAuth,
+    pathAutomaker,
+    pathCar,
+    pathCarModel,
+]
 
 const paths = {}
 

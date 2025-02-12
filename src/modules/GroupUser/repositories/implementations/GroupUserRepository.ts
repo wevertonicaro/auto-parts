@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm'
 import AppError from '../../../../http/error/AppError'
 import { GroupUser } from '../../../../shared/infra/typeorm/entities/GroupUsers'
-import { ICreateGroupUserDto } from '../../dtos/GroupUser.dto'
+import { ICreateGroupUserDto, IUpdateGroupUserDto } from '../../dtos/GroupUser.dto'
 import { IGroupUserRepository } from '../IGroupUserRepository'
 import { dataBaseConnection } from './../../../../shared/infra/typeorm/database/dataSource'
 
@@ -29,7 +29,7 @@ export class GroupUserRepository implements IGroupUserRepository {
         return await this.repository.findOneBy({ description })
     }
 
-    async update(id: number, data: any): Promise<GroupUser | any> {
+    async update(id: number, data: IUpdateGroupUserDto): Promise<GroupUser> {
         const updateResult = await this.repository.update(id, data)
         if (updateResult.raw.affectedRows < 0) {
             throw new AppError('Atualização não efetuada')

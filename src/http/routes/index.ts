@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { authRouter } from './Auth.routes'
 import { automakerRouter } from './AutoMaker'
 import { carRouter } from './Car'
+import { carModelRoutes } from './CarModel'
 import { groupUserRouter } from './GroupUser.routes'
 import { userRouter } from './User.routes'
 
@@ -16,5 +17,7 @@ router.use('/group-users', groupUserRouter)
 router.use('/automakers', automakerRouter)
 
 router.use('/cars', carRouter)
+
+router.use('/car-models', carModelRoutes)
 
 export { router }

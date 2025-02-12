@@ -5,6 +5,8 @@ import { IAutomakerRepository } from '../../modules/Automaker/repositories/IAuto
 import { AutomakerRepository } from '../../modules/Automaker/repositories/implementations/AutomakerRepository'
 import { ICarRepository } from '../../modules/Car/repositories/ICarRepository'
 import { CarRepository } from '../../modules/Car/repositories/implementations/CarRepository'
+import { ICarModelRepository } from '../../modules/CarModels/repositories/ICarModelsRepository'
+import { CarModelsRepository } from '../../modules/CarModels/repositories/implementations/CarModelsRepository'
 import { IGroupUserRepository } from '../../modules/GroupUser/repositories/IGroupUserRepository'
 import { GroupUserRepository } from '../../modules/GroupUser/repositories/implementations/GroupUserRepository'
 import { UserRepository } from '../../modules/User/repositories/implementations/UserRepository'
@@ -20,3 +22,5 @@ container.registerSingleton<IUserTokensRepository>('UserTokensRepository', UserT
 container.registerSingleton<IAutomakerRepository>('AutomakerRepository', AutomakerRepository)
 
 container.registerSingleton<ICarRepository>('CarRepository', CarRepository)
+
+container.registerSingleton<ICarModelRepository>('CarModelRepository', CarModelsRepository)

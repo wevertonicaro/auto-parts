@@ -1,6 +1,7 @@
 import { definitionsAuth } from '../../modules/auth/swagger/Auth.swagger'
 import { definitionsAutomaker } from '../../modules/Automaker/swagger/Automaker.swagger'
 import { definitionsCar } from '../../modules/Car/swagger/Car.swagger'
+import { definitionsCarModel } from '../../modules/CarModels/swagger/CarModels.swagger'
 import { definitionsGroupUser } from '../../modules/GroupUser/swagger/GroupUser.swagger'
 import { definitionsUser } from '../../modules/User/swagger/User.swagger'
 
@@ -60,6 +61,7 @@ const definitionsRepository: any[] = [
     definitionsAuth,
     definitionsAutomaker,
     definitionsCar,
+    definitionsCarModel,
 ]
 
 const definitions = {

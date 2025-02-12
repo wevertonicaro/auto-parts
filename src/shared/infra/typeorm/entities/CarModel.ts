@@ -13,7 +13,7 @@ import {
 import { Car } from './Car'
 
 @Entity('models')
-export class Model {
+export class CarModel {
     @PrimaryGeneratedColumn()
     id: number
 
