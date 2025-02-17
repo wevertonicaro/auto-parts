@@ -7,14 +7,17 @@ export const expiresTokenRefresh: string = process.env.EXPIRES_REFRESH_TOKEN
 export const expiresTokenRefreshTime: number = Number(process.env.EXPIRES_REFRESH_TOKEN_TIME)
 
 export const generateAccessToken = (user: UserMap, isRefresh: boolean): string => {
-    const expiresIn = isRefresh ? expiresToken : expiresTokenRefresh
+    try {
+        const expiresIn = isRefresh ? expiresTokenRefresh : expiresToken
 
-    const accessToken = sign(
-        {
-            user,
-        },
-        secret,
-        { expiresIn }
-    )
-    return accessToken
+        if (!secret) {
+            throw new Error('JWT secret is not defined')
+        }
+
+        const accessToken = sign({ user }, secret, { expiresIn })
+        return accessToken
+    } catch (error) {
+        console.error('Error generating access token:', error)
+        throw new Error('Error generating access token')
+    }
 }

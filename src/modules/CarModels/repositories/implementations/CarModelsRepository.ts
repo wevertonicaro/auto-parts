@@ -36,6 +36,10 @@ export class CarModelsRepository implements ICarModelRepository {
         return carModel
     }
 
+    async findByCarIdAndDescription(description: string, carId: number): Promise<CarModel> {
+        return await this.repository.findOneBy({ description, carId })
+    }
+
     async update(id: number, data: IUpdateCarModelDto): Promise<CarModel> {
         const updateResult = await this.repository.update(id, data)
         if (updateResult.raw.affectedRows < 0) {

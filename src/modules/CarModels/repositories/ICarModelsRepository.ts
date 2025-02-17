@@ -7,6 +7,7 @@ export interface ICarModelRepository {
     findById(id: number): Promise<CarModel>
     findByDescription(description: string): Promise<CarModel>
     findByCarId(carId: number): Promise<CarModel[]>
+    findByCarIdAndDescription(description: string, carId: number): Promise<CarModel>
     update(id: number, data: IUpdateCarModelDto): Promise<CarModel>
     delete(id: number): Promise<boolean | string>
 }
