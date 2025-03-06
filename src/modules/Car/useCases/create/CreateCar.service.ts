@@ -22,7 +22,7 @@ export class CreateCarService {
 
         const automakerExists = await this.automakerRepository.findById(data.automakerId)
 
-        if (!automakerExists) throw new AppError('Montadora já existente.')
+        if (!automakerExists) throw new AppError('Montadora não encontrada.', 404)
 
         const carExists = await this.carRepository.findByDescription(data.description)
 
@@ -32,7 +32,7 @@ export class CreateCarService {
             const createCar = await this.carRepository.create(data)
             return createCar
         } catch (error: any) {
-            return error.message
+            throw new AppError(`Erro ao criar veículo: ${error.message}`, 500)
         }
     }
 }

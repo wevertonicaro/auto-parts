@@ -10,6 +10,7 @@ const config: Config = {
         '^.+\\.ts$': 'ts-jest',
     },
     testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+    setupFilesAfterEnv: ['<rootDir>/src/utils/jest/setupTests.ts'],
 }
 
 export default config
