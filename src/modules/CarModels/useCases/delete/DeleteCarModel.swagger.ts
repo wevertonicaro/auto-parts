@@ -38,23 +38,25 @@ const deleteCarModelPath = {
     },
 }
 
-const deleteCarModelDefinitions = {
-    responseDeleteCarModel: {
-        type: 'object',
-        properties: {
-            status: {
-                type: 'boolean',
-            },
-            statusCode: {
-                type: 'integer',
-                default: 204,
-            },
-            data: {
-                type: 'object',
-                properties: {},
+const deleteCarModelDefinitions = [
+    {
+        responseDeleteCarModel: {
+            type: 'object',
+            properties: {
+                status: {
+                    type: 'boolean',
+                },
+                statusCode: {
+                    type: 'integer',
+                    default: 204,
+                },
+                data: {
+                    type: 'object',
+                    properties: {},
+                },
             },
         },
     },
-}
+]
 
 export { deleteCarModelDefinitions, deleteCarModelPath }

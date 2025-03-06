@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { CreateCarModelController } from '../../modules/CarModels/useCases/createCarModel/CreateCarModel.controller'
+import { CreateCarModelController } from '../../modules/CarModels/useCases/create/CreateCarModel.controller'
 
 const createCarModelController = new CreateCarModelController()
 
