@@ -16,10 +16,10 @@ export class UpdateCarController {
 
             const car = await updateCarService.execute(data)
 
-            logger.info({ message: `Veículo atualizado com sucesso!` })
+            logger.info({ message: `Veículo atualizado com sucesso!`, payload: { id, data } })
             return response.status(200).json(car)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao atualizar veículo.', { error: error.message, payload: data })
             return response.status(400).json({ error: error.message })
         }
     }

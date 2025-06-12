@@ -16,10 +16,14 @@ export class UpdatePartsController {
 
             const part = await updatePartsService.execute(data)
 
-            logger.info({ message: `Peça atualizada com sucesso!` })
+            logger.info({ message: `Peça atualizada com sucesso!`, payload: { id, data } })
             return response.status(200).json(part)
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Error ao atualizar peça',
+                error: error.message,
+                payload: { id, data },
+            })
             return response.status(400).json({ error: error.message })
         }
     }

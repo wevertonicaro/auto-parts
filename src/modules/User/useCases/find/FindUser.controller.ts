@@ -30,10 +30,14 @@ export class FindUserController {
                 return response.status(200).json(users)
             }
 
-            logger.error('Usuário(s) não encontrado')
+            logger.error('Usuário(s) não encontrado', { payload: { id, email } })
             return response.status(404).json({ error: 'Usuário(s) não encontrado' })
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Erro ao buscar usuário(s)',
+                error: error.message,
+                payload: { id, email },
+            })
             return response.status(500).json({ error: 'Internal server error' })
         }
     }

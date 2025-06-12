@@ -9,12 +9,12 @@ export class DeleteAutomakerController {
         try {
             const deleteAutomakerService = container.resolve(DeleteAutomakerService)
 
-            const group = await deleteAutomakerService.execute(Number(id))
+            const automaker = await deleteAutomakerService.execute(Number(id))
 
-            logger.info({ message: 'Montadora deletada com sucesso!' })
-            return response.status(204).json(group)
+            logger.info('Montadora deletada com sucesso!')
+            return response.status(204).json(automaker)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao deletar montadora', { error: error.message })
             return response.status(400).json({ error: error.message })
         }
     }

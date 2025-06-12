@@ -17,9 +17,15 @@ export class CreateUserController {
                 groupUserId: grupoId,
             })
 
+            logger.info({ message: 'Usuário criado com sucesso!', payload: request.body })
+
             return response.status(201).json(user)
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Erro ao criar usuário',
+                error: error.message,
+                payload: request.body,
+            })
             return response.status(400).json({ error: error.message })
         }
     }

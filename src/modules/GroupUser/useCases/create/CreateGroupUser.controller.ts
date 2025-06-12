@@ -12,10 +12,14 @@ export class CreateGroupUserController {
 
             const groupUser = await createGroupUserService.execute(data)
 
-            logger.info({ message: 'Grupo criado com sucesso!' })
+            logger.info({ message: 'Grupo criado com sucesso!', payload: data })
             return response.status(201).json(groupUser)
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Error ao criar grupo de usuário',
+                error: error.message,
+                payload: data,
+            })
             return response.status(400).json({ error: error.message })
         }
     }

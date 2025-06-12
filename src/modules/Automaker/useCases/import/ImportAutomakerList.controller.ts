@@ -15,7 +15,13 @@ export class ImportAutomakerListController {
             const createAutomakerService = container.resolve(ImportAutomakerListService)
             const result = await createAutomakerService.execute(file)
 
-            logger.info({ message: 'Montadoras importadas com sucesso!', result })
+            logger.info('Montadoras importadas com sucesso!', {
+                response: {
+                    totalRecords: result.totalRecords,
+                    importedRecords: result.importedRecords,
+                    duplicateRecords: result.duplicateRecords,
+                },
+            })
 
             response.status(200).json({
                 totalRecords: result.totalRecords,
@@ -23,9 +29,8 @@ export class ImportAutomakerListController {
                 duplicateRecords: result.duplicateRecords,
             })
         } catch (error: any) {
-            logger.error(error.message)
-
-            response.status(400).json({ error: error.message })
+            logger.error('Error ao importar montadoras', { error: error.message })
+            response.status(400).json(error.message)
         }
     }
 }

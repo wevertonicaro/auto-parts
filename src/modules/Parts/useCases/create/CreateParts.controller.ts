@@ -12,10 +12,14 @@ export class CreatePartsController {
 
             const parts = await createPartsService.execute(data)
 
-            logger.info({ message: 'Peça criada com sucesso!' })
+            logger.info({ message: 'Peça criada com sucesso!', payload: data })
             return response.status(201).json(parts)
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Error ao criar peça',
+                error: error.message,
+                payload: data,
+            })
             return response.status(400).json({ error: error.message })
         }
     }

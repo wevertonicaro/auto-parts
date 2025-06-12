@@ -24,6 +24,10 @@ const config = {
         PASSWORD: process.env.DB_PASSWORD,
         NAME: process.env.DB_DATABASE,
     },
+    MONGO: {
+        URI: process.env.MONGO_URI,
+        DB_NAME: process.env.MONGO_DB_NAME || 'log_db',
+    },
     REDIS: {
         HOST: process.env.REDIS_HOST,
         PORT: process.env.REDIS_PORT,

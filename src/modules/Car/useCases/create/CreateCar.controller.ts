@@ -12,10 +12,10 @@ export class CreateCarController {
 
             const car = await createCarService.execute(data)
 
-            logger.info({ message: 'Grupo criado com sucesso!' })
+            logger.info({ message: 'Veículo criado com sucesso!', payload: data })
             return response.status(201).json(car)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao criar veículo', { error: error.message, payload: data })
             return response.status(400).json({ error: error.message })
         }
     }

@@ -16,10 +16,16 @@ export class UpdateCarModelController {
 
             const car = await updateCarModelService.execute(data)
 
-            logger.info({ message: `Modelo de veículo atualizado com sucesso!` })
+            logger.info({
+                message: `Modelo de veículo atualizado com sucesso!`,
+                payload: { id, data },
+            })
             return response.status(200).json(car)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao atualizar modelo do veículo', {
+                error: error.message,
+                payload: data,
+            })
             return response.status(400).json({ error: error.message })
         }
     }

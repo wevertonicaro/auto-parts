@@ -16,10 +16,14 @@ export class UpdateGroupUserController {
 
             const group = await updateGroupUserService.execute(data)
 
-            logger.info({ message: `Grupo atualizado com sucesso!` })
+            logger.info({ message: `Grupo atualizado com sucesso!`, payload: { id, data } })
             return response.status(200).json(group)
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Error ao atualizar grupo de usuário',
+                error: error.message,
+                payload: { id, data },
+            })
             return response.status(400).json({ error: error.message })
         }
     }

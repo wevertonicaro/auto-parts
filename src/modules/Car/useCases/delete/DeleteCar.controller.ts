@@ -14,7 +14,7 @@ export class DeleteCarController {
             logger.info({ message: 'Veículo deletado com sucesso!' })
             return response.status(204).json(group)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao deletar veículo', { error: error.message })
             return response.status(400).json({ error: error.message })
         }
     }

@@ -8,6 +8,7 @@ import swaggerTools from 'swagger-tools'
 import swaggerUiExpress, { SwaggerUiOptions } from 'swagger-ui-express'
 import { config } from '../../config/api'
 import '../../shared/container'
+import { connectMongo } from '../../shared/infra/mongodb'
 import { dataBaseConnection } from '../../shared/infra/typeorm/database/dataSource'
 import { logger } from '../../shared/utils/logger'
 import jsonSwagger from '../../shared/utils/swagger/swagger'
@@ -102,10 +103,18 @@ export class App {
             })
             .catch((error: Error) => {
                 console.error('Erro ao conectar ao banco de dados:', error)
-                throw new AppError(
-                    `Não foi possível conectar ao banco de dados! \nMotivo: ${error.message}`
-                )
+                throw new AppError(`Não foi possível conectar ao banco!\nMotivo: ${error.message}`)
             })
+
+        try {
+            const mongo = await connectMongo()
+            console.log(`MongoDB conectado com sucesso ao banco`)
+        } catch (mongoError: any) {
+            console.error('MongoDB Falha ao conectar:', mongoError)
+            throw new AppError(
+                `Não foi possível conectar ao MongoDB!\nMotivo: ${mongoError.message}`
+            )
+        }
     }
 
     public start() {

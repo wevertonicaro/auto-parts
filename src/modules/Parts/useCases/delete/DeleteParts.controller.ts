@@ -11,10 +11,14 @@ export class DeletePartsController {
 
             const parts = await deletePartsService.execute(Number(id))
 
-            logger.info({ message: 'Peça deletada com sucesso!' })
+            logger.info({ message: 'Peça deletada com sucesso!', payload: { id } })
             return response.status(204).json(parts)
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Error ao deletar peça',
+                error: error.message,
+                payload: { id },
+            })
             return response.status(400).json({ error: error.message })
         }
     }

@@ -12,9 +12,14 @@ export class DeleteUserController {
 
         try {
             await userService.execute(Number(id), userLogged)
+            logger.info({ message: 'Usuário deletado com sucesso!', payload: { id } })
             return response.status(204).end()
         } catch (error) {
-            logger.error(error.message)
+            logger.error({
+                message: 'Erro ao deletar usuário',
+                error: error.message,
+                payload: { id, userLogged },
+            })
             return response.status(400).json({ error: error.message })
         }
     }

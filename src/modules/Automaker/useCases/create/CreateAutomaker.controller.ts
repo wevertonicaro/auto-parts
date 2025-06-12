@@ -15,7 +15,7 @@ export class CreateAutomakerController {
             logger.info({ message: 'Monatdora criada com sucesso!' })
             return response.status(201).json(automaker)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao criar montadora.', { error: error.message, payload: data })
             return response.status(400).json({ error: error.message })
         }
     }

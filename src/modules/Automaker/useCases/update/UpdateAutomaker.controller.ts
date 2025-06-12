@@ -16,10 +16,13 @@ export class UpdateAutomakerController {
 
             const automaker = await updateAutomakerService.execute(data)
 
-            logger.info({ message: `Montadora atualizada com sucesso!` })
+            logger.info('Montadora atualizada com sucesso!', { payload: { id, data } })
             return response.status(200).json(automaker)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao atualizar montadora', {
+                error: error.message,
+                payload: { id, data },
+            })
             return response.status(400).json({ error: error.message })
         }
     }

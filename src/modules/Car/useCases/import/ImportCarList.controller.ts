@@ -16,7 +16,14 @@ export class ImportCarListController {
 
             const result = await createCarsService.execute(file)
 
-            logger.info({ message: 'Montadoras importadas com sucesso!', result })
+            logger.info({
+                message: 'Montadoras importadas com sucesso!',
+                response: {
+                    totalRecords: result.totalRecords,
+                    importedRecords: result.importedRecords,
+                    duplicateRecords: result.duplicateRecords,
+                },
+            })
 
             response.status(200).json({
                 totalRecords: result.totalRecords,
@@ -24,7 +31,7 @@ export class ImportCarListController {
                 duplicateRecords: result.duplicateRecords,
             })
         } catch (error: any) {
-            logger.error(error.message)
+            logger.error('Error ao importar veículos.', { error: error.message })
 
             response.status(400).json({ error: error.message })
         }

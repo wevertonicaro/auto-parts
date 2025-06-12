@@ -12,10 +12,13 @@ export class CreateCarModelController {
 
             const carModel = await createCarModelService.execute(data)
 
-            logger.info({ message: 'Modelo de veículo criado com sucesso!' })
+            logger.info({ message: 'Modelo de veículo criado com sucesso!', payload: data })
             return response.status(201).json(carModel)
         } catch (error) {
-            logger.error(error.message)
+            logger.error('Error ao criar modelo do veículo', {
+                error: error.message,
+                payload: data,
+            })
             return response.status(400).json({ error: error.message })
         }
     }

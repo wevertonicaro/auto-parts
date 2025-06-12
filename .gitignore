@@ -7,6 +7,5 @@ build/
 tmp/
 temp/
 .env
-logs/
 ormlogs.log
 .git
