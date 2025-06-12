@@ -19,7 +19,7 @@ COPY wait-for-it.sh /usr/app/wait-for-it.sh
 RUN chmod +x /usr/app/wait-for-it.sh
 
 # Exponha a porta onde a aplicação irá rodar
-EXPOSE 3000
+EXPOSE 3001
 
 # Comando para rodar a aplicação
 CMD ["npm", "start"]
