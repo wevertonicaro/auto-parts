@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 import { UserRepository } from '../../modules/User/repositories/implementations/UserRepository'
-import { logger } from '../../utils/logger'
+import { logger } from '../../shared/utils/logger'
 import AppError from '../error/AppError'
 import { redisClient } from './rateLimiter'
 

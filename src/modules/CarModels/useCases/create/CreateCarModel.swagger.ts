@@ -70,9 +70,13 @@ const createCarModelDefinitions = [
                 },
                 createdAt: {
                     type: 'string',
+                    format: 'date-time',
+                    description: 'Data de criação da peça.',
                 },
                 updatedAt: {
                     type: 'string',
+                    format: 'date-time',
+                    description: 'Data da última atualização da peça.',
                 },
             },
         },

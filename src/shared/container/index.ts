@@ -9,6 +9,10 @@ import { ICarModelRepository } from '../../modules/CarModels/repositories/ICarMo
 import { CarModelsRepository } from '../../modules/CarModels/repositories/implementations/CarModelsRepository'
 import { IGroupUserRepository } from '../../modules/GroupUser/repositories/IGroupUserRepository'
 import { GroupUserRepository } from '../../modules/GroupUser/repositories/implementations/GroupUserRepository'
+import { PartsModelsRelationsRepository } from '../../modules/Parts/repositories/implementations/PartsModelsRelationsRepository'
+import { PartsRepository } from '../../modules/Parts/repositories/implementations/PartsRepository'
+import { IPartsModelsRelationsRepository } from '../../modules/Parts/repositories/IPartsModelsRelationsRepository'
+import { IPartsRepository } from '../../modules/Parts/repositories/IPartsRepository'
 import { UserRepository } from '../../modules/User/repositories/implementations/UserRepository'
 import { IUsersRepository } from '../../modules/User/repositories/IUserRepository'
 import '../container/providers'
@@ -24,3 +28,10 @@ container.registerSingleton<IAutomakerRepository>('AutomakerRepository', Automak
 container.registerSingleton<ICarRepository>('CarRepository', CarRepository)
 
 container.registerSingleton<ICarModelRepository>('CarModelRepository', CarModelsRepository)
+
+container.registerSingleton<IPartsRepository>('PartsRepository', PartsRepository)
+
+container.registerSingleton<IPartsModelsRelationsRepository>(
+    'PartsModelsRelationsRepository',
+    PartsModelsRelationsRepository
+)

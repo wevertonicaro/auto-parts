@@ -1,10 +1,11 @@
 import { Router } from 'express'
-import { authRouter } from './Auth.routes'
-import { automakerRouter } from './AutoMaker'
-import { carRouter } from './Car'
-import { carModelRoutes } from './CarModel'
-import { groupUserRouter } from './GroupUser.routes'
-import { userRouter } from './User.routes'
+import { authRouter } from '../../modules/auth/routes'
+import { automakerRouter } from '../../modules/Automaker/routes'
+import { carRouter } from '../../modules/Car/routes'
+import { carModelRoutes } from '../../modules/CarModels/routes'
+import { groupUserRouter } from '../../modules/GroupUser/routes'
+import { partsRoutes } from '../../modules/Parts/routes'
+import { userRouter } from '../../modules/User/routes'
 
 const router = Router()
 
@@ -19,5 +20,7 @@ router.use('/automakers', automakerRouter)
 router.use('/cars', carRouter)
 
 router.use('/car-models', carModelRoutes)
+
+router.use('/parts', partsRoutes)
 
 export { router }

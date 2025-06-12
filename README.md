@@ -1,54 +1,132 @@
-# Catálogo de Peças de Veículos
+# 📦 Catálogo de Peças de Veículos
 
-    Este é um projeto desenvolvido em TypeScript que utiliza um banco de dados MySQL para gerenciar um
+Este é um projeto desenvolvido com **TypeScript** e **Node.js**, utilizando um banco de dados
+**MySQL** para gerenciar um catálogo de peças automotivas. O sistema foi criado para facilitar a
+organização, consulta e gerenciamento de informações de forma estruturada e eficiente.
 
-catálogo de peças de veículos. O projeto foi projetado para ajudar na organização, busca e
-gerenciamento de informações sobre peças automotivas.
+## 🚀 Tecnologias Utilizadas
 
-## Tecnologias Utilizadas
+-   **TypeScript** – Tipagem estática para maior robustez do código.
+-   **Node.js + Express** – Backend com API RESTful escalável.
+-   **TypeORM** – ORM para abstração e integração com banco de dados relacional.
+-   **MySQL** – Banco de dados relacional.
+-   **Docker + Docker Compose** – Containerização da aplicação.
+-   **Swagger** – Documentação interativa da API.
+-   **Jest** – Testes automatizados com suporte a coverage.
+-   **Redis** – Cache e controle de rate-limit.
+-   **Multer** – Upload de arquivos (CSV, imagens, etc).
+-   **Winston** – Logger customizado com níveis e transporte configurável.
+-   **Yup** – Validação de dados.
+-   **Prettier + ESLint** – Padrões de formatação e lint.
 
--   **TypeScript**: Linguagem de programação fortemente tipada que compila para JavaScript.
--   **MySQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenamento de
-    dados.
--   **Express**: Framework web para Node.js.
--   **TypeORM**: Ferramenta ORM para comunicação com o banco de dados.
--   **Swagger**: Ferramenta de documentação de desenvolvimento.
--   **Jest**: Ferramenta de testes de desenvolvimento.
--   **Docker**: Ferramenta de containerização da aplicação.
+## 📁 Estrutura do Projeto
 
-## Pré-requisitos
+A estrutura principal do projeto é:
 
-    Certifique-se de ter o **Node.js** e o **MySQL** instalados em sua máquina antes de continuar, ou,
+```
+src/
+├── config/
+├── http/
+│   ├── error/              # Mapeamento e tratamento de erros personalizados
+│   ├── main/               # Entrypoint (ex: main.ts, app.ts)
+│   ├── middlewares/        # Middlewares HTTP globais
+│   ├── routes/             # Definição e composição de rotas
+├── modules/
+├── shared/
+│   ├── container/          # Injeção de dependências
+│   │   ├── providers/      # Providers como Storage, Mail, Cache
+│   ├── infra/
+│   │   ├── typeorm/
+│   │   │   ├── database/   # Configuração de conexão de banco de dados
+│   │   │   ├── entities/   # Entidades globais
+│   │   │   ├── migrations/ # Migrations versionadas
+│   │   │   ├── seeds/      # Seeds iniciais
+│   └── utils/
+```
 
-tenha o **Docker** instalado em sua máquina para que seja rodado o comando do docker compose up.
+## ⚙️ Pré-requisitos
 
-## Instalação
+-   [Node.js](https://nodejs.org/)
+-   [MySQL](https://www.mysql.com/)
+-   [Docker e Docker Compose](https://www.docker.com/) (opcional, mas recomendado)
 
-    1. Clone o repositório do projeto:
+## 💻 Instalação
 
-        git clone https://github.com/wevertonicaro/auto-parts
-        cd projeto-catalogo-pecas
+### 1. Clone o repositório
 
-    2. Instale as dependências do projeto:
+```bash
+git clone https://github.com/wevertonicaro/auto-parts
+cd auto-parts
+```
 
-        npm install
+### 2. Instale as dependências
 
-    3. Executar o projeto em ambiente de desenvolvimento
+```bash
+npm install
+```
 
-        npm run dev
+### 3. Configure as variáveis de ambiente
 
-    4. Executar o projeto em modo de produção
+Crie um arquivo `.env` na raiz do projeto com base no `.env.example`.
 
-        npm run start
+### 4. Execute o projeto
 
-## Estrutura do projeto
+#### Em modo desenvolvimento
 
--   **src/**: Diretório principal contendo todo o código-fonte do projeto.
--   **modules/**: Módulos relacionados à funcionalidade do catálogo de peças de veículos.
--   **shared/**: Código compartilhado, incluindo configurações de banco de dados e entidades.
+```bash
+npm run dev
+```
 
-## Documentação
+#### Em modo produção
 
-    Após inicialização do projeto, acesse a documentação através do endpoint:
+```bash
+npm run build
+npm start
+```
 
-**/docs**
+#### Com Docker
+
+```bash
+docker-compose up --build
+```
+
+## 🧪 Testes
+
+```bash
+npm run test             # Executa todos os testes
+npm run test-dev         # Testes em modo watch
+npm run test:coverage    # Geração de relatório de cobertura
+```
+
+## 🛠️ Migrations e Seeds
+
+```bash
+npm run migration        # Cria uma nova migration
+npm run migrate          # Executa as migrations
+npm run revert           # Reverte a última migration
+npm run seed             # Executa os seeds de dados
+```
+
+## 📚 Documentação da API
+
+Após inicializar o projeto, acesse:
+
+```
+http://localhost:3000/docs
+```
+
+A documentação Swagger permite testar os endpoints da API diretamente no navegador.
+
+## 🧰 Scripts úteis
+
+-   `npm run formatter` – Executa Prettier para formatar o código.
+-   `npm run check` – Verifica se há erros de formatação.
+-   `npm run lint` – Corrige erros de lint com ESLint.
+
+## 📝 Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+---
+
+Desenvolvido por Weverton Ícaro 🚗

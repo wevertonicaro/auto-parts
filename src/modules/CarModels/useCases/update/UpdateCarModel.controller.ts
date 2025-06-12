@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
-import { logger } from '../../../../utils/logger'
+import { logger } from '../../../../shared/utils/logger'
 import { IUpdateCarModelDto } from '../../dtos/CarModels.dto'
 import { UpdateCarModelService } from './UpdateCarModel.service'
 

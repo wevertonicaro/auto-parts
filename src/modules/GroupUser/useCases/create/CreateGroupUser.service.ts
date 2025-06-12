@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
 import { GroupUser } from '../../../../shared/infra/typeorm/entities/GroupUsers'
-import validatorObject from '../../../../utils/yup/location.validation'
+import validatorObject from '../../../../shared/utils/yup/location.validation'
 import { ICreateGroupUserDto } from '../../dtos/GroupUser.dto'
 import { IGroupUserRepository } from '../../repositories/IGroupUserRepository'
 import { createGroupUserValidator } from '../../validator/groupUserValidator'

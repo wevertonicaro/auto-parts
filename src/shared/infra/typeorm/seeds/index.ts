@@ -1,23 +1,22 @@
-import { dataBaseConnection } from '../database/dataSource';
-import adminUser from './Admin.seed';
-import groupUser from './GroupUser.seed';
+import { dataBaseConnection } from '../database/dataSource'
+import adminUser from './Admin.seed'
+import automakerSeed from './Automakers.seed'
+import groupUser from './GroupUser.seed'
 
 async function create() {
-  try {
-    // Inicializa a conexão com o banco de dados
-    const connection = await dataBaseConnection.initialize();
-    
-    // Executa os seeders
-    await groupUser(connection);
-    await adminUser(connection);
+    try {
+        const connection = await dataBaseConnection.initialize()
 
-    console.log('Seed OK!');
-  } catch (error) {
-    console.error('Error during seeding:', error);
-  } finally {
-    // Fecha a conexão com o banco de dados
-    await dataBaseConnection.destroy();
-  }
+        await groupUser(connection)
+        await adminUser(connection)
+        await automakerSeed(connection)
+
+        console.log('Seed OK!')
+    } catch (error) {
+        console.error('Error during seeding:', error)
+    } finally {
+        await dataBaseConnection.destroy()
+    }
 }
 
-create();
+create()

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
-import { logger } from '../../../../utils/logger'
+import { logger } from '../../../../shared/utils/logger'
 import { FindCarModelService } from './FindCarModel.service'
 
 export class FindCarModelController {

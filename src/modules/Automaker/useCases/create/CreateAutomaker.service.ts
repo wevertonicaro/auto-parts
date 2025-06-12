@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 import AppError from '../../../../http/error/AppError'
 import { Automaker } from '../../../../shared/infra/typeorm/entities/Automaker'
-import validatorObject from '../../../../utils/yup/location.validation'
+import validatorObject from '../../../../shared/utils/yup/location.validation'
 import { ICreateAutomakerDto } from '../../dtos/Automaker.dto'
 import { IAutomakerRepository } from '../../repositories/IAutomakerRepository'
 import { createAutomakerValidator } from '../../validator/automakerValidator'
