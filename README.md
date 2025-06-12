@@ -14,8 +14,9 @@ organização, consulta e gerenciamento de informações de forma estruturada e 
 -   **Swagger** – Documentação interativa da API.
 -   **Jest** – Testes automatizados com suporte a coverage.
 -   **Redis** – Cache e controle de rate-limit.
--   **Multer** – Upload de arquivos (CSV, imagens, etc).
 -   **Winston** – Logger customizado com níveis e transporte configurável.
+-   **MongoDb** - Armazenamento dos logs gerados.
+-   **Multer** – Upload de arquivos (CSV, imagens, etc).
 -   **Yup** – Validação de dados.
 -   **Prettier + ESLint** – Padrões de formatação e lint.
 
