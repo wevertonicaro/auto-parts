@@ -51,4 +51,4 @@ services:
 volumes:
     mysqldata:
     redisdata:
-    mongo-data:
+    mongo_data:
