@@ -35,7 +35,8 @@ const config = {
     SHARED: {
         CONTACT: 'weverton.dev@gmail.com',
     },
-    ALLOW_DOMAINS: ['http://localhost:3000'],
+    ALLOW_DOMAINS: ['http://localhost:3001'],
 }
 
 export { config }
+

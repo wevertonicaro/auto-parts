@@ -1,12 +1,15 @@
-class Error {
-    public readonly message: string
 
+class AppError extends globalThis.Error {
     public readonly statusCode: number
 
     constructor(message: string, statusCode = 400) {
-        this.message = message
+        super(message)
+
+        this.name = 'AppError'
         this.statusCode = statusCode
+
+        Object.setPrototypeOf(this, new.target.prototype)
     }
 }
 
-export default Error
+export default AppError

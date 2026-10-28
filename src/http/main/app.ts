@@ -1,10 +1,9 @@
 import cors from 'cors'
 import 'dotenv/config'
-import express, { Application, NextFunction, Request, RequestHandler, Response } from 'express'
+import express, { Application, NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
 import morgan from 'morgan'
 import 'reflect-metadata'
-import swaggerTools from 'swagger-tools'
 import swaggerUiExpress, { SwaggerUiOptions } from 'swagger-ui-express'
 import { config } from '../../config/api'
 import '../../shared/container'
@@ -50,6 +49,7 @@ export class App {
         )
     }
 
+    
     private setupRoutes() {
         const swaggerDoc = jsonSwagger
 
@@ -65,20 +65,23 @@ export class App {
             },
         }
 
-        swaggerTools.initializeMiddleware(swaggerDoc, (middleware: any) => {
-            this.app.use(
-                '/docs',
-                swaggerUiExpress.serve,
-                swaggerUiExpress.setup(swaggerDoc, optionsSwagger)
-            )
-            this.app.use(middleware.swaggerMetadata() as RequestHandler)
-            this.app.use(middleware.swaggerUi() as RequestHandler)
-        })
+        this.app.use(
+            '/docs',
+            swaggerUiExpress.serve,
+            swaggerUiExpress.setup(swaggerDoc, optionsSwagger)
+        )
 
-        // this.app.use(express.raw({ type: '*/*', limit: '10mb', inflate: true }))
+        // this.app.use(
+        //     express.raw({
+        //         type: '*/*',
+        //         limit: '10mb',
+        //         inflate: true,
+        //     })
+        // )
 
         this.app.use(config.SERVER.BASEPATH, router)
     }
+
 
     private errors() {
         this.app.use((err: any, req: Request, res: Response, next: NextFunction) => {
@@ -91,6 +94,23 @@ export class App {
                     message: `Internal server error - ${err.message}`,
                 })
             }
+
+            if (res.statusCode >= 400) {
+                logger.error(`[Server Error ${res.statusCode}] ${err.message}`, {
+                    statusCode: res.statusCode,
+                    path: req.path,
+                    method: req.method,
+                    stack: err.stack,
+                });
+            } else {
+                logger.warn(`[Server Error ${res.statusCode}] ${err.message}`, {
+                    statusCode: res.statusCode,
+                    path: req.path,
+                    method: req.method,
+                    stack: err.stack,
+                });
+            }
+
             next()
         })
     }

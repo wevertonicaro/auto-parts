@@ -13,58 +13,38 @@ export class UserTokensRepository implements IUserTokensRepository {
 
     async create(data: ICreateUserToken): Promise<UserToken> {
         const userToken = this.repository.create(data)
-        await this.repository.save(userToken)
-        return userToken
+        return this.repository.save(userToken)
     }
 
-    async findByUserId(userId: number): Promise<UserToken> {
-        const usertoken = await this.repository.findOneBy({ userId })
-        return usertoken
+    async findByUserId(userId: number): Promise<UserToken | null> {
+        return this.repository.findOneBy({ userId })
     }
 
-    async findByUserIdAndRefreshToken(userId: number, token: string): Promise<UserToken> {
-        const userTokens = await this.repository.findOneBy({
-            userId,
-            token,
-        })
-
-        return userTokens
+    async findByUserIdAndRefreshToken(
+        userId: number,
+        token: string,
+    ): Promise<UserToken | null> {
+        return this.repository.findOneBy({ userId, token })
     }
 
-    async findByRefreshToken(token: string): Promise<UserToken> {
-        const userToken = await this.repository.findOneBy({ token })
-        return userToken
+    async findByRefreshToken(token: string): Promise<UserToken | null> {
+        return this.repository.findOneBy({ token })
     }
 
-    async update(data: UserToken): Promise<UserToken | boolean> {
-        const id = data.id
+    async update(data: UserToken): Promise<UserToken | null> {
+        const { id, ...fields } = data
 
-        const existingRecord = await this.repository.findOneBy({ id })
+        const result = await this.repository.update(id, fields)
 
-        if (!existingRecord) {
-            return false
+        if (!result.affected) {
+            return null
         }
 
-        try {
-            const update = await this.repository.update(id, data)
-
-            if ((update.raw.affectedRows = 0)) {
-                return false
-            }
-
-            const updatedRecord = await this.repository.findOneBy({ id })
-            return updatedRecord
-        } catch (error) {
-            return error
-        }
+        return this.repository.findOneBy({ id })
     }
 
     async deleteById(id: number): Promise<boolean> {
-        try {
-            await this.repository.delete(id)
-            return true
-        } catch (error) {
-            return error
-        }
+        const result = await this.repository.delete(id)
+        return !!result.affected
     }
 }
