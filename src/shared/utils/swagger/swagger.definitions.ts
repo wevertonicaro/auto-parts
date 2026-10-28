@@ -84,3 +84,4 @@ for (let arrayObject of definitionsRepository) {
 }
 
 export { definitions }
+

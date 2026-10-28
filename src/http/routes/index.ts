@@ -4,6 +4,7 @@ import { automakerRouter } from '../../modules/Automaker/routes'
 import { carRouter } from '../../modules/Car/routes'
 import { carModelRoutes } from '../../modules/CarModels/routes'
 import { groupUserRouter } from '../../modules/GroupUser/routes'
+import { healthRouter } from '../../modules/Health/routes'
 import { logsRouter } from '../../modules/Logs/routes'
 import { partsRoutes } from '../../modules/Parts/routes'
 import { userRouter } from '../../modules/User/routes'
@@ -26,4 +27,7 @@ router.use('/parts', partsRoutes)
 
 router.use('/logs', logsRouter)
 
+router.use('/health', healthRouter)
+
 export { router }
+

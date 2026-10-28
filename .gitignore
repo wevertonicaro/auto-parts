@@ -9,3 +9,4 @@ temp/
 .env
 ormlogs.log
 .git
+.vscode/

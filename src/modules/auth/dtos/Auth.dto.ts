@@ -11,16 +11,19 @@ export interface IResponseLogin {
         email: string
         id: number
     }
-    token: string
+    token: string,
+    refresh_token: string
 }
 
 export interface IPayload {
     user: User
     email: string
+    tokenType: 'access' | 'refresh'
 }
 
 export interface ITokenResponse {
-    token: string
+    token: string,
+    refresh_token: string,
     message: string
 }
 
@@ -34,4 +37,5 @@ export interface IUpdateUserToken {
     userId: number
     expiresDate: string
     token: string
+    refresh_token: string
 }

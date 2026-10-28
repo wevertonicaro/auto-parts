@@ -31,3 +31,4 @@ for (let tagsArrayPaths of pathsRepository) {
 }
 
 export { paths }
+
